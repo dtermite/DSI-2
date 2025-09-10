@@ -1,0 +1,106 @@
+/* Paleta de colores basada en el logo */
+:root {
+    --dsi-blue: #0056b3; /* Un azul brillante para destacar */
+    --dsi-dark-blue: #004488;
+    --dsi-gray: #6c757d; /* Gris de las montañas */
+    --dsi-light-gray: #f8f9fa; /* Fondo claro */
+    --dsi-black: #212529; /* Color de texto oscuro */
+    --dsi-white: #fff;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--dsi-black);
+}
+
+/* Estilos de la barra de navegación */
+.navbar-dark .navbar-nav .nav-link {
+    color: var(--dsi-white);
+}
+
+/* Sección principal (Hero) */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/Nuevo Logo DSI 2025.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+    /* Efecto de paralaje con un sutil degradado para el texto */
+    background-attachment: fixed;
+    background-blend-mode: multiply;
+}
+.hero-section h1, .hero-section p {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos de botones */
+.btn-primary {
+    background-color: var(--dsi-blue);
+    border-color: var(--dsi-blue);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: var(--dsi-dark-blue);
+    border-color: var(--dsi-dark-blue);
+    transform: scale(1.05); /* Efecto de crecimiento al pasar el mouse */
+}
+
+/* Secciones generales */
+section {
+    padding: 6rem 0;
+}
+#proyectos {
+    background-color: var(--dsi-light-gray);
+}
+
+/* Tarjetas de servicios */
+.service-card {
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.service-icon {
+    font-size: 3rem;
+    color: var(--dsi-blue);
+    margin-bottom: 1rem;
+}
+
+/* Tarjetas de testimonios */
+.testimonial-card {
+    background-color: var(--dsi-white);
+    border-left: 5px solid var(--dsi-blue);
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Formulario de Google */
+.google-form-container {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden; /* Para que el iframe se ajuste al radio del borde */
+}
+
+/* Pie de página (Footer) */
+.social-icons a {
+    transition: color 0.3s ease;
+}
+.social-icons a:hover {
+    color: var(--dsi-blue) !important;
+}
+
+/* Animaciones con JavaScript */
+.animated-element {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
