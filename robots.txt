@@ -1,3 +1,8 @@
 User-agent: *
+# Rutas bloqueadas futuras (descomentar cuando existan):
+# Disallow: /admin/
+# Disallow: /tmp/
 Disallow:
+
+# Sitemap principal
 Sitemap: https://www.dsinformatica.com.ar/sitemap.xml

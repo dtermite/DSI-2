@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d6efd"/>
+      <stop offset="100%" stop-color="#6610f2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <g fill="#ffffff">
+    <text x="60" y="210" font-size="62" font-family="Montserrat,Arial,sans-serif" font-weight="700">KPIs Esenciales de Ventas</text>
+    <text x="60" y="300" font-size="40" font-family="Montserrat,Arial,sans-serif" font-weight="600">Power BI • Decisiones ágiles</text>
+    <text x="60" y="470" font-size="28" font-family="Montserrat,Arial,sans-serif" opacity="0.85">www.dsinformatica.com.ar/recursos/kpis-dashboard-ventas.html</text>
+  </g>
+</svg>
