@@ -1,92 +1,330 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cómo Automatizar Reportes en Excel con IA | DSI</title>
-  <meta name="description" content="Guía práctica para automatizar reportes en Excel combinando macros y modelos de IA ligeros para PYMEs." />
-  <link rel="canonical" href="https://www.dsinformatica.com.ar/recursos/automatizar-excel-ia.html" />
-  <meta name="theme-color" content="#0d6efd" />
-  <meta name="author" content="DSI - Del Sur Informática" />
-  
-  <meta property="og:title" content="Cómo Automatizar Reportes en Excel con IA | DSI" />
-  <meta property="og:description" content="Guía práctica para automatizar reportes en Excel combinando macros y modelos de IA ligeros para PYMEs." />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://www.dsinformatica.com.ar/recursos/automatizar-excel-ia.html" />
-  <meta property="og:site_name" content="DSI - Del Sur Informática" />
-  <meta property="og:locale" content="es_AR" />
-  <meta property="og:image" content="https://www.dsinformatica.com.ar/images/og/automatizar-excel-ia-og.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:image" content="https://www.dsinformatica.com.ar/images/og/automatizar-excel-ia-og.png" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Cómo Automatizar Reportes en Excel con IA | DSI" />
-  <meta name="twitter:description" content="Guía práctica para automatizar reportes en Excel combinando macros y modelos de IA ligeros para PYMEs." />
-  
-  <link rel="icon" href="../images/favicon.ico" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../style.min.css" />
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Article",
-    "mainEntityOfPage":"https://www.dsinformatica.com.ar/recursos/automatizar-excel-ia.html",
-    "headline":"Cómo Automatizar Reportes en Excel con IA",
-    "datePublished":"2025-09-18",
-    "dateModified":"2025-09-18",
-    "author":{"@type":"Organization","name":"DSI - Del Sur Informática"},
-    "publisher":{"@type":"Organization","name":"DSI - Del Sur Informática"},
-    "inLanguage":"es-AR"
-  }
-  </script>
-  <!-- GA4 (placeholder) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX',{anonymize_ip:true});</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cómo automatizar reportes en Excel con IA | DSI</title>
+  <meta name="description" content="Guía práctica para automatizar reportes en Excel usando IA (Copilot), Power Query, Office Scripts y Power Automate. Incluye ejemplos, prompts y código listo para usar.">
+  <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.min.css">
+  <style>body{font-family:Montserrat,sans-serif}</style>
 </head>
 <body>
-  <nav class="navbar navbar-dark bg-dark">
-    <div class="container"><a class="navbar-brand" href="../index.html">DSI</a></div>
-  </nav>
-  <main class="container py-5">
-    <figure class="mb-4">
-      <picture>
-  <source srcset="../images/automatizacion-excel.webp" type="image/webp">
-  <img src="../images/automatizacion-excel.png" class="img-fluid rounded" alt="Automatización de reportes en Excel con IA" loading="lazy" width="1200" height="675">
-      </picture>
-      <figcaption class="text-muted small mt-2">Automatización en Excel: de tareas manuales a flujos inteligentes apoyados por IA.</figcaption>
-    </figure>
-    <h1>Cómo Automatizar Reportes en Excel con IA</h1>
-    <p>En esta guía conocerás un enfoque práctico para combinar automatización en Excel (macros, Power Query) con modelos de IA ligeros que ayudan a reducir tareas repetitivas y errores.</p>
-    <h2>Puntos clave</h2>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {"@type": "ListItem","position": 1, "name": "Inicio", "item": "https://www.dsinformatica.com.ar/"},
-        {"@type": "ListItem","position": 2, "name": "Recursos", "item": "https://www.dsinformatica.com.ar/recursos/"},
-        {"@type": "ListItem","position": 3, "name": "Automatizar Excel con IA", "item": "https://www.dsinformatica.com.ar/recursos/automatizar-excel-ia.html"}
-      ]
-    }
-    </script>
-    <ul>
-      <li>Identifica procesos repetitivos y define entradas/salidas claras.</li>
-      <li>Usa Power Query para ingesta/limpieza y macros para orquestación.</li>
-      <li>Aplica IA para clasificación, extracción de texto o predicciones simples.</li>
-      <li>Documenta y monitorea para mejorar con el tiempo.</li>
-    <div class="container mt-3" aria-label="breadcrumbs">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="../index.html">Inicio</a></li>
-          <li class="breadcrumb-item"><a href="./">Recursos</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Automatizar Excel con IA</li>
-        </ol>
-      </nav>
+  <a href="#main-content" class="visually-hidden-focusable">Saltar al contenido principal</a>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a href="https://wa.me/542944201878" class="whatsapp-float" target="_blank" aria-label="Chatea por WhatsApp">
+    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/whatsapp.svg" alt="WhatsApp" style="width:48px;height:48px;">
+  </a>
+
+  <!-- Navbar del sitio -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation" aria-label="Navegación principal">
+    <div class="container">
+      <a class="navbar-brand" href="../" aria-label="Inicio DSI - Del Sur Informática">DSI - Del Sur Informática</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú de navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../#servicios">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link" href="../#proyectos">Proyectos</a></li>
+          <li class="nav-item"><a class="nav-link" href="./">Recursos</a></li>
+          <li class="nav-item"><a class="nav-link" href="../#testimonios">Testimonios</a></li>
+          <li class="nav-item"><a class="nav-link" href="../#contacto">Contacto</a></li>
+        </ul>
+      </div>
     </div>
-    </ul>
-    <p>¿Querés implementarlo en tu empresa? Visitá nuestros <a href="../index.html#servicios">servicios</a> o mirá <a href="../index.html#proyectos">proyectos</a>.</p>
+  </nav>
+
+  <main id="main-content" role="main" class="mt-5 pt-4">
+    <section class="py-4">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h1 class="h2 mb-0">Automatizar reportes en Excel con IA</h1>
+          <a href="../" class="btn btn-outline-primary"><i class="bi bi-house-door me-1"></i> Ir a inicio</a>
+        </div>
+        <figure class="mb-4">
+          <picture>
+            <source srcset="../images/automatizacion-excel.webp" type="image/webp">
+            <source srcset="../images/automatizacion-excel.png" type="image/png">
+            <img src="../images/automatizacion-excel.png" class="img-fluid rounded shadow-sm" alt="Automatización de reportes en Excel con IA, Power Query y Office Scripts" loading="lazy" decoding="async" width="1200" height="675">
+          </picture>
+        </figure>
+
+        <!-- Intro -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <p class="lead">Configura un <strong>pipeline de reporte en Excel</strong> que: (1) se actualiza solo desde la fuente de datos, (2) genera visuales y KPIs, (3) redacta <em>insights</em> con <strong>IA (Copilot)</strong> y (4) <strong>envía</strong> el reporte final por correo o lo guarda como PDF/Excel en la nube.</p>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <h3 class="h5">🧰 Requisitos</h3>
+                <ul class="mb-0">
+                  <li>Microsoft 365 con Excel de escritorio (preferible) y acceso a <strong>Copilot</strong>.</li>
+                  <li>Conectar a OneDrive/SharePoint para el archivo final.</li>
+                  <li>Fuentes de datos (CSV, Excel, DB o API) y permisos.</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h3 class="h5">🚀 Resultado</h3>
+                <ul class="mb-0">
+                  <li>Archivo <code>Reporte.xlsx</code> con pestañas Datos, Modelo, Dashboard, Insights IA.</li>
+                  <li>Script que refresca, actualiza visuales y exporta a PDF/Excel.</li>
+                  <li>Flujo programado que distribuye el reporte automáticamente.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Índice -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <h2 class="h4">Índice</h2>
+            <ol class="mb-0">
+              <li><a href="#datos">Preparar y limpiar datos con Power Query</a></li>
+              <li><a href="#modelo">Modelo, KPIs y tablas dinámicas</a></li>
+              <li><a href="#dashboard">Dashboard con gráficos</a></li>
+              <li><a href="#copilot">Generar insights con IA (Copilot)</a></li>
+              <li><a href="#script">Automatizar con Office Scripts (refresh & export)</a></li>
+              <li><a href="#flow">Programar distribución con Power Automate</a></li>
+              <li><a href="#plus">Opcionales: Parámetros, Python en Excel y control de calidad</a></li>
+              <li><a href="#troubleshoot">Solución de problemas</a></li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Datos -->
+        <section id="datos" class="mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="h4">1) Preparar y limpiar datos con Power Query</h2>
+              <ol class="mb-3">
+                <li><strong>Conectar</strong> → <kbd>Datos &gt; Obtener datos</kbd> (CSV/Excel/SQL/API). Cargar como <em>Solo crear conexión</em> y habilitar <em>Agregar al modelo de datos</em> si usarás medidas.</li>
+                <li><strong>Transformar</strong>: abrir <kbd>Transformar datos</kbd> y aplicar pasos: tipo de datos, dividir/combinar columnas, quitar nulos, normalizar texto, crear columnas personalizadas.</li>
+                <li><strong>Parámetros</strong> (opcional): en Power Query, <em>Administrar parámetros</em> para rutas/fechas. Útil para mover el archivo sin romper conexiones.</li>
+              </ol>
+              <details class="mb-3">
+                <summary>📎 Dataset de ejemplo (CSV)</summary>
+<pre class="mt-2 mb-0">fecha,region,producto,vendedor,unidades,precio
+2025-07-01,Centro,A,María,12,150
+2025-07-01,Norte,B,Carlos,9,200
+2025-07-02,Sur,A,Luis,5,150
+2025-07-03,Centro,C,María,7,300
+2025-07-04,Norte,A,Ana,10,150
+2025-07-05,Sur,B,Pedro,4,200</pre>
+              </details>
+              <div class="alert alert-info mb-0"><strong>Tip:</strong> Nombra las consultas de Power Query con prefijos (p.ej. <code>fct_Ventas</code>, <code>dim_Producto</code>) para mantener orden.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Modelo -->
+        <section id="modelo" class="mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="h4">2) Modelo, KPIs y tablas dinámicas</h2>
+              <p>En la hoja <strong>Modelo</strong> crea tus medidas (si usas el Modelo de datos) o columnas calculadas. Para un enfoque directo en Excel, puedes usar <em>Tablas dinámicas</em> desde el rango/consulta.</p>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <h3 class="h6">Medidas básicas (Ejemplos)</h3>
+                  <ul class="mb-0">
+                    <li><code>Unidades Totales</code>: suma de <em>unidades</em>.</li>
+                    <li><code>Ingresos</code>: suma de <em>unidades * precio</em>.</li>
+                    <li><code>Ticket Promedio</code>: <em>Ingresos / Unidades</em>.</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <h3 class="h6">Tabla dinámica</h3>
+                  <ol class="mb-0">
+                    <li>Insertar &gt; Tabla dinámica &gt; Fuente: <em>consulta Power Query</em>.</li>
+                    <li>Filas: <em>fecha (mes)</em> • Columnas: <em>región</em> • Valores: <em>Ingresos</em>.</li>
+                    <li>Habilitar segmentadores (slicers) para <em>producto</em> y <em>vendedor</em>.</li>
+                  </ol>
+                </div>
+              </div>
+              <div class="alert alert-success mt-3 mb-0">Con Copilot puedes pedir: <em>“Crea una tabla dinámica con ingresos por mes y región y agrega un gráfico de columnas.”</em></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dashboard -->
+        <section id="dashboard" class="mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="h4">3) Dashboard con gráficos</h2>
+              <p>En la hoja <strong>Dashboard</strong>, inserta gráficos (columnas, líneas, mapa si aplica). Nombra rangos para facilitar scripting.</p>
+              <ul class="mb-0">
+                <li>Selecciona estilos consistentes y usa formato condicional para KPIs (verde ▲, rojo ▼).</li>
+                <li>Agrega un encabezado con el período (p.ej., <em>Últimos 30 días</em>).</li>
+                <li>Bloque “KPIs”: Ingresos, Unidades, Ticket Promedio, Top producto/Región.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Copilot -->
+        <section id="copilot" class="mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="h4">4) Generar <em>insights</em> con IA (Copilot)</h2>
+              <p>Abre Copilot en Excel y utiliza <strong>prompts contextuales</strong> para obtener explicaciones, tendencias y resúmenes que se actualizan con tus datos.</p>
+              <h3 class="h6">Prompts recomendados</h3>
+              <ul>
+                <li>“Analiza la tabla <code>fct_Ventas</code> y resume en 5 puntos las principales tendencias del último mes.”</li>
+                <li>“¿Qué regiones explican el 80% de los ingresos? Devuélvelo en una tabla.”</li>
+                <li>“Genera un texto ejecutivo (80-120 palabras) con hallazgos y recomendaciones accionables.”</li>
+                <li>“Propón 3 alertas automáticas basadas en umbrales (ej., caída &gt; 15% intermensual).”</li>
+              </ul>
+              <div class="alert alert-warning"><strong>Privacidad:</strong> Evita incluir datos sensibles en los prompts. Usa muestras o vistas con campos mínimos necesarios.</div>
+              <h3 class="h6">Insertar resultados en la hoja</h3>
+              <p>Pide a Copilot: “Escribe el resumen en la hoja <em>Insights IA</em>, celda A2”. Luego da formato con estilo de informe.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Script -->
+        <section id="script" class="mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="h4">5) Automatizar con Office Scripts (Refresh & Export)</h2>
+              <p>En Excel para la Web: <kbd>Automatizar &gt; Nuevo script</kbd>. Usa el siguiente script para <strong>refrescar consultas</strong> y <strong>exportar a PDF</strong> y <strong>guardar una copia Excel</strong>.</p>
+              <h3 class="h6">Script listo para usar</h3>
+<pre><code class="language-ts">/**
+ * Office Script: Refresh & Export
+ * - Refresca todas las conexiones/consultas
+ * - Actualiza tablas dinámicas
+ * - Exporta a PDF (hoja "Dashboard")
+ * - Guarda copia con timestamp
+ */
+async function main(workbook: ExcelScript.Workbook) {
+  const date = new Date();
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth()+1).padStart(2,"0");
+  const dd = String(date.getDate()).padStart(2,"0");
+  const hh = String(date.getHours()).padStart(2,"0");
+  const mi = String(date.getMinutes()).padStart(2,"0");
+  const stamp = `${yyyy}${mm}${dd}-${hh}${mi}`;
+
+  // 1) Refrescar conexiones/consultas
+  try {
+    workbook.refreshAllDataConnections();
+  } catch(e) { console.log("No data connections or refresh failed:", e); }
+
+  // 2) Actualizar tablas dinámicas
+  try {
+    const pivots = workbook.getPivotTables();
+    pivots.forEach(p => p.refresh());
+  } catch(e) { console.log("No pivot tables or refresh failed:", e); }
+
+  // 3) Exportar a PDF solo la hoja Dashboard
+  const dashboard = workbook.getWorksheet("Dashboard");
+  if (dashboard) {
+    const exportOptions: ExcelScript.WorkbookPdfExportOptions = {
+      // Ajusta según tus márgenes/área
+      onlySelectedWorksheet: true,
+      includeDocumentProperties: true,
+      scale: 90
+    };
+    await workbook.getApplication().createPdf(exportOptions);
+  }
+
+  // 4) Guardar una copia con timestamp
+  const fileName = `Reporte_Automatizado_${stamp}.xlsx`;
+  await workbook.saveAs({
+    fileName,
+    conflictResolution: ExcelScript.SaveConflictResolution.replace,
+  });
+}
+</code></pre>
+              <div class="alert alert-info mb-0">Ajusta el nombre de la hoja de salida (p.ej., <code>"Dashboard"</code>) y el <em>scale</em> hasta que el PDF quede perfecto.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Flow -->
+        <section id="flow" class="mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="h4">6) Programar distribución con Power Automate</h2>
+              <ol class="mb-3">
+                <li><strong>Disparador</strong>: “Recurrente” (p.ej., cada lunes 08:00).</li>
+                <li><strong>Acción: Ejecutar script de Excel Online (Business)</strong> → selecciona el archivo en OneDrive/SharePoint y el script <code>main</code>.</li>
+                <li><strong>Acción: Obtener archivo</strong> (PDF/Excel) desde la misma carpeta.</li>
+                <li><strong>Acción: Enviar correo (Outlook)</strong> con adjunto o <strong>Guardar archivo</strong> en SharePoint/Teams con nombre <code>Reporte_Automatizado_{año}{mes}{día}.pdf</code>.</li>
+              </ol>
+              <div class="alert alert-success mb-0">Suma lógica condicional: si “Ingresos &lt; Objetivo” entonces notifica a gerencia con asunto ⚠️.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Opcionales -->
+        <section id="plus" class="mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="h4">7) Opcionales potentes</h2>
+              <h3 class="h6">Parámetros de período</h3>
+              <p>Crea una hoja <em>Config</em> con celdas <code>FechaInicio</code> y <code>FechaFin</code>. Úsalas en Power Query para filtrar.</p>
+              <h3 class="h6">Python en Excel</h3>
+              <p>Para modelos de pronóstico o clasificación, inserta una celda Python (Excel) y calcula predicciones. Exporta resultados a una tabla y conéctala al dashboard.</p>
+<pre><code># Ejemplo mínimo en una celda Python (pseudocódigo)
+import pandas as pd
+# df = xl("fct_Ventas")  # referencia a una Tabla de Excel
+# pronostico = tu_modelo(df)
+# xlw("Pronostico", pronostico)  # volcar salida a Excel
+</code></pre>
+              <h3 class="h6">Control de calidad</h3>
+              <ul class="mb-0">
+                <li>Valida tipos de datos en Power Query.</li>
+                <li>Agrega pruebas simples (conteos, totales) y compáralos con períodos previos.</li>
+                <li>Usa formato condicional para destacar outliers.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Troubleshoot / Checklist -->
+        <section id="troubleshoot" class="mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="h4">8) Solución de problemas</h2>
+              <ul>
+                <li><strong>Conexión falla:</strong> verifica credenciales y orígenes en <em>Consultas y conexiones</em>.</li>
+                <li><strong>PDF en blanco:</strong> asegúrate de seleccionar la hoja correcta y ajustar el área de impresión.</li>
+                <li><strong>Copilot no responde bien:</strong> pide tablas intermedias, limita columnas y refina el prompt con contexto concreto.</li>
+                <li><strong>Lentitud:</strong> deshabilita cálculos volátiles, reduce pasos de PQ y usa columnas de tipo entero/fecha.</li>
+              </ul>
+              <div class="alert alert-warning mb-0">Recuerda mantener tus datos en OneDrive/SharePoint para que los flujos puedan acceder y no dependan de tu PC encendida.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="text-center mb-4">
+          <h2 class="h4">🎯 Checklist final</h2>
+          <p class="mb-3">
+            <span class="badge rounded-pill text-bg-secondary me-1">Datos conectados</span>
+            <span class="badge rounded-pill text-bg-secondary me-1">KPIs y pivots</span>
+            <span class="badge rounded-pill text-bg-secondary me-1">Dashboard</span>
+            <span class="badge rounded-pill text-bg-secondary me-1">Insights IA</span>
+            <span class="badge rounded-pill text-bg-secondary me-1">Script de refresh</span>
+            <span class="badge rounded-pill text-bg-secondary">Flujo programado</span>
+          </p>
+          <p class="lead">Tu reporte ahora <strong>se actualiza y se distribuye solo</strong>. Enfócate en la estrategia, no en el trabajo repetitivo. 🚀</p>
+          <a href="../" class="btn btn-primary"><i class="bi bi-arrow-left me-1"></i> Ir a inicio</a>
+        </section>
+      </div>
+    </section>
   </main>
-  <footer class="bg-dark text-white text-center p-3"><small>&copy; 2025 DSI</small></footer>
+
+  <footer class="bg-dark text-white text-center p-3">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 DSI - Del Sur Informática. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="../script.min.js" defer></script>
 </body>
 </html>
