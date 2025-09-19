@@ -2,32 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.dsinformatica.com.ar/</loc>
-    <lastmod>2025-09-18</lastmod>
+  <lastmod>2025-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <!-- Secciones internas (anclas) removidas para evitar fragment duplicates -->
   <url>
     <loc>https://www.dsinformatica.com.ar/recursos/automatizar-excel-ia.html</loc>
-    <lastmod>2025-09-18</lastmod>
+  <lastmod>2025-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.dsinformatica.com.ar/recursos/</loc>
-    <lastmod>2025-09-18</lastmod>
+  <lastmod>2025-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.dsinformatica.com.ar/recursos/kpis-dashboard-ventas.html</loc>
-    <lastmod>2025-09-18</lastmod>
+  <lastmod>2025-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.dsinformatica.com.ar/recursos/workflow-ia-beneficios.html</loc>
-    <lastmod>2025-09-18</lastmod>
+  <lastmod>2025-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
