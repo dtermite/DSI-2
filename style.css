@@ -68,7 +68,7 @@ body {
     /* Preparado para futura versión WebP (añadir images/Nuevo Logo DSI 2025.webp cuando esté disponible) */
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
         image-set(
-            url('images/Nuevo Logo DSI 2025.png') type('image/png')
+            url('images/nuevo-logo-dsi-2025.png') type('image/png')
         );
     background-size: cover;
     background-position: center;
@@ -171,5 +171,5 @@ section {
     transform: translateY(0);
 }
 .webp-supported .hero-section {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/Nuevo Logo DSI 2025.webp');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/nuevo-logo-dsi-2025.webp');
 }
