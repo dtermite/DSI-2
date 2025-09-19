@@ -1,86 +1,292 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Indicadores Esenciales en un Dashboard de Ventas | DSI</title>
-  <meta name="description" content="Métricas clave que deben incluirse en un dashboard de ventas en Power BI para decisiones ágiles." />
-  <link rel="canonical" href="https://www.dsinformatica.com.ar/recursos/kpis-dashboard-ventas.html" />
-  <meta name="theme-color" content="#0d6efd" />
-  <meta name="author" content="DSI - Del Sur Informática" />
-
-  <meta property="og:title" content="Indicadores Esenciales en un Dashboard de Ventas | DSI" />
-  <meta property="og:description" content="Métricas clave que deben incluirse en un dashboard de ventas en Power BI para decisiones ágiles." />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://www.dsinformatica.com.ar/recursos/kpis-dashboard-ventas.html" />
-  <meta property="og:site_name" content="DSI - Del Sur Informática" />
-  <meta property="og:locale" content="es_AR" />
-  <meta property="og:image" content="https://www.dsinformatica.com.ar/images/og/kpis-dashboard-ventas-og.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:image" content="https://www.dsinformatica.com.ar/images/og/kpis-dashboard-ventas-og.png" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Indicadores Esenciales en un Dashboard de Ventas | DSI" />
-  <meta name="twitter:description" content="Métricas clave que deben incluirse en un dashboard de ventas en Power BI para decisiones ágiles." />
-
-  <link rel="icon" href="../images/favicon.ico" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../style.min.css" />
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Article",
-    "mainEntityOfPage":"https://www.dsinformatica.com.ar/recursos/kpis-dashboard-ventas.html",
-    "headline":"Indicadores Esenciales en un Dashboard de Ventas",
-    "datePublished":"2025-09-18",
-    "dateModified":"2025-09-18",
-    "author":{"@type":"Organization","name":"DSI - Del Sur Informática"},
-    "publisher":{"@type":"Organization","name":"DSI - Del Sur Informática"},
-    "inLanguage":"es-AR"
-  }
-  </script>
-  <!-- GA4 (placeholder) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type": "ListItem","position": 1, "name": "Inicio", "item": "https://www.dsinformatica.com.ar/"},
-      {"@type": "ListItem","position": 2, "name": "Recursos", "item": "https://www.dsinformatica.com.ar/recursos/"},
-      {"@type": "ListItem","position": 3, "name": "KPIs de Ventas", "item": "https://www.dsinformatica.com.ar/recursos/kpis-dashboard-ventas.html"}
-    ]
-  }
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX',{anonymize_ip:true});</script>
+  <title>Automatizar reportes con IA en Excel (Guía paso a paso)</title>
+  <meta name="description" content="Guía práctica para automatizar reportes en Excel usando IA (Copilot), Power Query, Office Scripts y Power Automate. Incluye ejemplos, prompts y código listo para usar." />
+  <style>
+    :root{
+      --bg:#0f172a; /* slate-900 */
+      --card:#111827ee; /* gray-900 */
+      --muted:#cbd5e1; /* slate-300 */
+      --accent:#22d3ee; /* cyan-400 */
+      --accent-2:#a78bfa; /* violet-400 */
+      --ok:#34d399; /* emerald-400 */
+      --warn:#fbbf24; /* amber-400 */
+      --danger:#f87171; /* red-400 */
+      --code:#0b1020;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b1220,#0f172a 40%,#0b1220);color:#e5e7eb;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;line-height:1.6}
+    header{position:sticky;top:0;backdrop-filter: blur(8px);background:#0b1020cc;border-bottom:1px solid #1f2937}
+    .wrap{max-width:1100px;margin:auto;padding:24px}
+    .title{font-size:clamp(1.4rem,2vw+1rem,2.4rem);font-weight:800;letter-spacing:.3px;}
+    .subtitle{color:var(--muted)}
+    .grid{display:grid;gap:18px}
+    .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media (max-width:900px){.grid.cols-2{grid-template-columns:1fr}}
+    section{margin:28px 0}
+    .card{background:var(--card);border:1px solid #1f2937;border-radius:18px;padding:20px;box-shadow:0 20px 60px #0004}
+    h2{font-size:1.6rem;margin:0 0 12px}
+    h3{font-size:1.15rem;margin:20px 0 8px;color:#e2e8f0}
+    p.lead{font-size:1.1rem;color:#e2e8f0}
+    .pill{display:inline-block;padding:.3rem .6rem;border-radius:999px;border:1px solid #334155;color:#cbd5e1;background:#0b1020;margin-right:.4rem;font-size:.8rem}
+    .tag{border-color:#243b53}
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;background:#0b1220;border:1px solid #263449;border-radius:8px;padding:.2rem .45rem}
+    code, pre{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+    pre{background:var(--code);color:#e5e7eb;border:1px solid #1f2937;padding:16px;border-radius:14px;overflow:auto}
+    .callout{border-left:4px solid var(--accent);padding:12px 14px;background:#0b1220;border-radius:12px;border:1px solid #1f2937}
+    .callout.warn{border-left-color:var(--warn)}
+    .callout.ok{border-left-color:var(--ok)}
+    .steps{counter-reset:step}
+    .steps .step{position:relative;padding-left:52px;margin:22px 0}
+    .steps .step:before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:36px;height:36px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));font-weight:800;color:#0b1220}
+    details{border:1px solid #1f2937;border-radius:14px;padding:12px 14px;background:#0b1220}
+    details summary{cursor:pointer;font-weight:700}
+    .badge{font-weight:700;color:#0b1020;background:linear-gradient(135deg,var(--accent),var(--accent-2));padding:.2rem .45rem;border-radius:8px}
+    .toc a{color:#93c5fd;text-decoration:none}
+    .toc a:hover{text-decoration:underline}
+    footer{border-top:1px solid #1f2937;color:#94a3b8}
+    .mono{font-family:ui-monospace,Consolas,monospace}
+    .center{text-align:center}
+    .responsive{max-width:100%;height:auto;border-radius:12px;border:1px solid #1f2937}
+  </style>
 </head>
 <body>
-  <nav class="navbar navbar-dark bg-dark">
-    <div class="container"><a class="navbar-brand" href="../index.html">DSI</a></div>
-  </nav>
-  <div class="container mt-3" aria-label="breadcrumbs">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="../index.html">Inicio</a></li>
-        <li class="breadcrumb-item"><a href="./">Recursos</a></li>
-        <li class="breadcrumb-item active" aria-current="page">KPIs de Ventas</li>
+  <header>
+    <div class="wrap">
+      <div class="title">Automatizar reportes con <span class="badge">IA</span> en Excel</div>
+      <div class="subtitle">Guía práctica y lista para publicar — de 0 a un flujo 100% automático con Copilot, Power Query, Office Scripts y Power Automate.</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card">
+      <h2>💡 Objetivo</h2>
+      <p class="lead">Configurar un <strong>pipeline de reporte en Excel</strong> que: (1) se actualice solo desde la fuente de datos, (2) genere visuales y KPIs, (3) redacte <em>insights</em> automáticos con <strong>IA (Copilot)</strong> y (4) <strong>envíe</strong> el reporte final por correo o lo guarde como PDF/Excel en la nube.</p>
+      <div class="grid cols-2">
+        <div>
+          <h3>🧰 Requisitos</h3>
+          <ul>
+            <li>Microsoft 365 con Excel de escritorio (preferible) y acceso a <strong>Copilot</strong>.</li>
+            <li>Conectar a OneDrive/SharePoint para el archivo final.</li>
+            <li>Fuentes de datos (CSV, Excel, DB o API) y permisos.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>🚀 Resultado</h3>
+          <ul>
+            <li>Archivo <span class="mono">Reporte.xlsx</span> con pestañas <em>Datos</em>, <em>Modelo</em>, <em>Dashboard</em>, <em>Insights IA</em>.</li>
+            <li>Script que refresca, actualiza visuales y exporta a PDF/Excel.</li>
+            <li>Flujo programado que distribuye el reporte automáticamente.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Índice</h2>
+      <ol class="toc">
+        <li><a href="#datos">Preparar y limpiar datos con Power Query</a></li>
+        <li><a href="#modelo">Modelo, KPIs y tablas dinámicas</a></li>
+        <li><a href="#dashboard">Dashboard con gráficos</a></li>
+        <li><a href="#copilot">Generar insights con IA (Copilot)</a></li>
+        <li><a href="#script">Automatizar con Office Scripts (refresh & export)</a></li>
+        <li><a href="#flow">Programar distribución con Power Automate</a></li>
+        <li><a href="#plus">Opcionales: Parámetros, Python en Excel y control de calidad</a></li>
+        <li><a href="#troubleshoot">Solución de problemas</a></li>
       </ol>
-    </nav>
-  </div>
-  <main class="container py-5">
-    <figure class="mb-4">
-      <picture>
-  <source srcset="../images/reporte-ventas.webp" type="image/webp">
-  <img src="../images/reporte-ventas.png" class="img-fluid rounded" alt="Dashboard de ventas con KPIs esenciales" loading="lazy" width="1200" height="675">
-      </picture>
-      <figcaption class="text-muted small mt-2">KPIs esenciales para una vista clara del rendimiento de ventas.</figcaption>
-    </figure>
-    <h1>Indicadores Esenciales en un Dashboard de Ventas</h1>
-    <p>Estos KPIs deben ser la base de tu dashboard de ventas en Power BI: Ingresos, Unidades vendidas, Margen, Ticket promedio, Tasa de conversión, Retención, Top productos/clientes, y comparativas YoY/MoM.</p>
-    <p>El objetivo es aportar claridad para tomar decisiones rápidamente. Evitá métricas redundantes o visualizaciones innecesarias.</p>
-    <p>¿Querés que diseñemos tu dashboard? Explorá nuestros <a href="../index.html#servicios">servicios</a> o revisá <a href="../index.html#proyectos">proyectos</a>.</p>
+    </section>
+
+    <section id="datos" class="card">
+      <h2>1) Preparar y limpiar datos con Power Query</h2>
+      <div class="steps">
+        <div class="step">
+          <strong>Conectar</strong> → <span class="kbd">Datos &gt; Obtener datos</span> (CSV/Excel/SQL/API). Cargar como <em>Solo crear conexión</em> y habilitar <em>Agregar al modelo de datos</em> si usarás medidas.
+        </div>
+        <div class="step">
+          <strong>Transformar</strong>: abrir <span class="kbd">Transformar datos</span> y aplicar pasos: tipo de datos, dividir/combinar columnas, quitar nulos, normalizar texto, crear columnas personalizadas.
+        </div>
+        <div class="step">
+          <strong>Parámetros</strong> (opcional): en Power Query, <em>Administrar parámetros</em> para rutas/fechas. Útil para mover el archivo sin romper conexiones.
+        </div>
+      </div>
+      <details>
+        <summary>📎 Dataset de ejemplo (CSV)</summary>
+        <pre>fecha,region,producto,vendedor,unidades,precio
+2025-07-01,Centro,A,María,12,150
+2025-07-01,Norte,B,Carlos,9,200
+2025-07-02,Sur,A,Luis,5,150
+2025-07-03,Centro,C,María,7,300
+2025-07-04,Norte,A,Ana,10,150
+2025-07-05,Sur,B,Pedro,4,200
+</pre>
+      </details>
+      <div class="callout"><strong>Tip:</strong> Nombra las consultas de Power Query con prefijos (p.ej. <span class="mono">fct_Ventas</span>, <span class="mono">dim_Producto</span>) para mantener orden.</div>
+    </section>
+
+    <section id="modelo" class="card">
+      <h2>2) Modelo, KPIs y tablas dinámicas</h2>
+      <p>En la hoja <strong>Modelo</strong> crea tus medidas (si usas el Modelo de datos) o columnas calculadas. Para un enfoque directo en Excel, puedes usar <em>Tablas dinámicas</em> desde el rango/consulta.</p>
+      <div class="grid cols-2">
+        <div>
+          <h3>Medidas básicas (Ejemplos)</h3>
+          <ul>
+            <li><span class="mono">Unidades Totales</span>: suma de <em>unidades</em>.</li>
+            <li><span class="mono">Ingresos</span>: suma de <em>unidades * precio</em>.</li>
+            <li><span class="mono">Ticket Promedio</span>: <em>Ingresos / Unidades</em>.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Tabla dinámica</h3>
+          <ol>
+            <li>Insertar &gt; Tabla dinámica &gt; Fuente: <em>consulta Power Query</em>.</li>
+            <li>Filas: <em>fecha (mes)</em> • Columnas: <em>región</em> • Valores: <em>Ingresos</em>.</li>
+            <li>Habilitar segmentadores (slicers) para <em>producto</em> y <em>vendedor</em>.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="callout ok">Con Copilot puedes pedir: <em>“Crea una tabla dinámica con ingresos por mes y región y agrega un gráfico de columnas.”</em></div>
+    </section>
+
+    <section id="dashboard" class="card">
+      <h2>3) Dashboard con gráficos</h2>
+      <p>En la hoja <strong>Dashboard</strong>, inserta gráficos (columnas, líneas, mapa si aplica). Nombra rangos para facilitar scripting.</p>
+      <ul>
+        <li>Selecciona estilos consistentes y usa formato condicional para KPIs (verde ▲, rojo ▼).</li>
+        <li>Agrega un encabezado con el período (p.ej., <em>Últimos 30 días</em>).</li>
+        <li>Bloque “KPIs”: Ingresos, Unidades, Ticket Promedio, Top producto/Región.</li>
+      </ul>
+    </section>
+
+    <section id="copilot" class="card">
+      <h2>4) Generar <em>insights</em> con IA (Copilot)</h2>
+      <p>Abre Copilot en Excel y utiliza <strong>prompts contextuales</strong> para obtener explicaciones, tendencias y resúmenes que se actualizan con tus datos.</p>
+      <h3>Prompts recomendados</h3>
+      <ul>
+        <li>“Analiza la tabla <span class="mono">fct_Ventas</span> y resume en 5 puntos las principales tendencias del último mes.”</li>
+        <li>“¿Qué regiones explican el 80% de los ingresos? Devuélvelo en una tabla.”</li>
+        <li>“Genera un texto ejecutivo (80-120 palabras) con hallazgos y recomendaciones accionables.”</li>
+        <li>“Propón 3 alertas automáticas basadas en umbrales (ej., caída &gt; 15% intermensual).”</li>
+      </ul>
+      <div class="callout warn"><strong>Privacidad:</strong> Evita incluir datos sensibles en los prompts. Usa muestras o vistas con campos mínimos necesarios.</div>
+      <h3>Insertar resultados en la hoja</h3>
+      <p>Pide a Copilot: “Escribe el resumen en la hoja <em>Insights IA</em>, celda A2”. Luego da formato con estilo de informe.</p>
+    </section>
+
+    <section id="script" class="card">
+      <h2>5) Automatizar con Office Scripts (Refresh & Export)</h2>
+      <p>En Excel para la Web: <span class="kbd">Automatizar &gt; Nuevo script</span>. Usa el siguiente script para <strong>refrescar consultas</strong> y <strong>exportar a PDF</strong> y <strong>guardar una copia Excel</strong>.</p>
+      <h3>Script listo para usar</h3>
+      <pre><code class="language-ts">/**
+ * Office Script: Refresh & Export
+ * - Refresca todas las conexiones/consultas
+ * - Actualiza tablas dinámicas
+ * - Exporta a PDF (hoja "Dashboard")
+ * - Guarda copia con timestamp
+ */
+async function main(workbook: ExcelScript.Workbook) {
+  const date = new Date();
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth()+1).padStart(2,"0");
+  const dd = String(date.getDate()).padStart(2,"0");
+  const hh = String(date.getHours()).padStart(2,"0");
+  const mi = String(date.getMinutes()).padStart(2,"0");
+  const stamp = `${yyyy}${mm}${dd}-${hh}${mi}`;
+
+  // 1) Refrescar conexiones/consultas
+  try {
+    workbook.refreshAllDataConnections();
+  } catch(e) { console.log("No data connections or refresh failed:", e); }
+
+  // 2) Actualizar tablas dinámicas
+  try {
+    const pivots = workbook.getPivotTables();
+    pivots.forEach(p => p.refresh());
+  } catch(e) { console.log("No pivot tables or refresh failed:", e); }
+
+  // 3) Exportar a PDF solo la hoja Dashboard
+  const dashboard = workbook.getWorksheet("Dashboard");
+  if (dashboard) {
+    const exportOptions: ExcelScript.WorkbookPdfExportOptions = {
+      // Ajusta según tus márgenes/área
+      onlySelectedWorksheet: true,
+      includeDocumentProperties: true,
+      scale: 90
+    };
+    await workbook.getApplication().createPdf(exportOptions);
+  }
+
+  // 4) Guardar una copia con timestamp
+  const fileName = `Reporte_Automatizado_${stamp}.xlsx`;
+  await workbook.saveAs({
+    fileName,
+    conflictResolution: ExcelScript.SaveConflictResolution.replace,
+  });
+}
+</code></pre>
+      <div class="callout">Ajusta el nombre de la hoja de salida (p.ej., <span class="mono">"Dashboard"</span>) y el <em>scale</em> hasta que el PDF quede perfecto.</div>
+    </section>
+
+    <section id="flow" class="card">
+      <h2>6) Programar distribución con Power Automate</h2>
+      <ol class="steps">
+        <li class="step"><strong>Disparador</strong>: “Recurrente” (p.ej., cada lunes 08:00).</li>
+        <li class="step"><strong>Acción: Ejecutar script de Excel Online (Business)</strong> → selecciona el archivo en OneDrive/SharePoint y el script <span class="mono">main</span>.</li>
+        <li class="step"><strong>Acción: Obtener archivo</strong> (PDF/Excel) desde la misma carpeta.</li>
+        <li class="step"><strong>Acción: Enviar correo (Outlook)</strong> con adjunto o <strong>Guardar archivo</strong> en SharePoint/Teams con nombre <span class="mono">Reporte_Automatizado_{año}{mes}{día}.pdf</span>.</li>
+      </ol>
+      <div class="callout ok">Suma lógica condicional: si “Ingresos &lt; Objetivo” entonces notifica a gerencia con asunto ⚠️.</div>
+    </section>
+
+    <section id="plus" class="card">
+      <h2>7) Opcionales potentes</h2>
+      <h3>Parámetros de período</h3>
+      <p>Crea una hoja <em>Config</em> con celdas <span class="mono">FechaInicio</span> y <span class="mono">FechaFin</span>. Úsalas en Power Query para filtrar.</p>
+      <h3>Python en Excel</h3>
+      <p>Para modelos de pronóstico o clasificación, inserta una celda Python (Excel) y calcula predicciones. Exporta resultados a una tabla y conéctala al dashboard.</p>
+      <pre><code># Ejemplo mínimo en una celda Python (pseudocódigo)
+import pandas as pd
+# df = xl("fct_Ventas")  # referencia a una Tabla de Excel
+# pronostico = tu_modelo(df)
+# xlw("Pronostico", pronostico)  # volcar salida a Excel
+</code></pre>
+      <h3>Control de calidad</h3>
+      <ul>
+        <li>Valida tipos de datos en Power Query.</li>
+        <li>Agrega pruebas simples (conteos, totales) y compáralos con períodos previos.</li>
+        <li>Usa formato condicional para destacar outliers.</li>
+      </ul>
+    </section>
+
+    <section id="troubleshoot" class="card">
+      <h2>8) Solución de problemas</h2>
+      <ul>
+        <li><strong>Conexión falla:</strong> verifica credenciales y orígenes en <em>Consultas y conexiones</em>.</li>
+        <li><strong>PDF en blanco:</strong> asegúrate de seleccionar la hoja correcta y ajustar el área de impresión.</li>
+        <li><strong>Copilot no responde bien:</strong> pide tablas intermedias, limita columnas y refina el prompt con contexto concreto.</li>
+        <li><strong>Lentitud:</strong> deshabilita cálculos volátiles, reduce pasos de PQ y usa columnas de tipo entero/fecha.</li>
+      </ul>
+      <div class="callout warn">Recuerda mantener tus datos en OneDrive/SharePoint para que los flujos puedan acceder y no dependan de tu PC encendida.</div>
+    </section>
+
+    <section class="card center">
+      <h2>🎯 Checklist final</h2>
+      <p>
+        <span class="pill">Datos conectados</span>
+        <span class="pill">KPIs y pivots</span>
+        <span class="pill">Dashboard</span>
+        <span class="pill">Insights IA</span>
+        <span class="pill">Script de refresh</span>
+        <span class="pill">Flujo programado</span>
+      </p>
+      <p class="lead">Tu reporte ahora <strong>se actualiza y se distribuye solo</strong>. Enfócate en la estrategia, no en el trabajo repetitivo. 🚀</p>
+    </section>
   </main>
-  <footer class="bg-dark text-white text-center p-3"><small>&copy; 2025 DSI</small></footer>
+
+  <footer class="wrap">
+    <p>Escrito para profesionales que desean acelerar su analítica en Excel con IA. Mantén la guía a mano y mejórala según tus procesos.</p>
+  </footer>
 </body>
 </html>
