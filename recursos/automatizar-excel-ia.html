@@ -10,7 +10,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.min.css">
-  <style>body{font-family:Montserrat,sans-serif}</style>
+  <style>
+    body{font-family:Montserrat,sans-serif}
+    /* Compactar espacio entre ítems de listas en esta página */
+    main ul li, main ol li { margin-bottom: 0.125rem; }
+    /* Reducir separación entre líneas dentro de los ítems largos */
+    main ul, main ol { line-height: 1.25; }
+  </style>
   <!-- Canonical -->
   <link rel="canonical" href="https://www.dsinformatica.com.ar/recursos/automatizar-excel-ia.html">
   <!-- Open Graph -->
@@ -20,12 +26,12 @@
   <meta property="og:title" content="Cómo automatizar reportes en Excel con IA | DSI">
   <meta property="og:description" content="Guía práctica para automatizar reportes en Excel usando IA (Copilot), Power Query, Office Scripts y Power Automate.">
   <meta property="og:url" content="https://www.dsinformatica.com.ar/recursos/automatizar-excel-ia.html">
-  <meta property="og:image" content="https://www.dsinformatica.com.ar/images/automatizacion-excel.png">
+  <meta property="og:image" content="https://www.dsinformatica.com.ar/images/og/automatizar-excel-ia-og.png">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cómo automatizar reportes en Excel con IA | DSI">
   <meta name="twitter:description" content="Guía práctica para automatizar reportes en Excel usando IA (Copilot), Power Query, Office Scripts y Power Automate.">
-  <meta name="twitter:image" content="https://www.dsinformatica.com.ar/images/automatizacion-excel.png">
+  <meta name="twitter:image" content="https://www.dsinformatica.com.ar/images/og/automatizar-excel-ia-og.png">
   <!-- Navegación rel -->
   <link rel="prev" href="https://www.dsinformatica.com.ar/recursos/">
   <link rel="next" href="https://www.dsinformatica.com.ar/recursos/kpis-dashboard-ventas.html">
@@ -37,8 +43,7 @@
     "headline": "Cómo automatizar reportes en Excel con IA",
     "description": "Guía práctica para automatizar reportes en Excel usando IA (Copilot), Power Query, Office Scripts y Power Automate.",
     "image": [
-      "https://www.dsinformatica.com.ar/images/automatizacion-excel.png",
-      "https://www.dsinformatica.com.ar/images/automatizacion-excel.webp"
+      "https://www.dsinformatica.com.ar/images/og/automatizar-excel-ia-og.png"
     ],
     "author": {"@type": "Organization", "name": "DSI - Del Sur Informática"},
     "publisher": {
@@ -85,7 +90,7 @@
           <li class="nav-item"><a class="nav-link" href="../#proyectos">Proyectos</a></li>
           <li class="nav-item"><a class="nav-link active" aria-current="page" href="./">Recursos</a></li>
           <li class="nav-item"><a class="nav-link" href="../#testimonios">Testimonios</a></li>
-          <li class="nav-item"><a class="nav-link" href="../#contacto">Contacto</a></li>
+          
         </ul>
       </div>
     </div>
@@ -109,7 +114,7 @@
           <picture>
             <source srcset="../images/automatizacion-excel.webp" type="image/webp">
             <source srcset="../images/automatizacion-excel.png" type="image/png">
-            <img src="../images/automatizacion-excel.png" class="img-fluid rounded shadow-sm" alt="Automatización de reportes en Excel con IA, Power Query y Office Scripts" loading="lazy" decoding="async" width="1200" height="675">
+            <img src="../images/automatizacion-excel.png" class="img-fluid rounded shadow-sm w-50 d-block mx-auto" alt="Automatización de reportes en Excel con IA, Power Query y Office Scripts" loading="lazy" decoding="async" width="1200" height="675">
           </picture>
         </figure>
 
@@ -361,15 +366,7 @@ import pandas as pd
         </section>
 
         <section class="text-center mb-4">
-          <h2 class="h4">🎯 Checklist final</h2>
-          <p class="mb-3">
-            <span class="badge rounded-pill text-bg-secondary me-1">Datos conectados</span>
-            <span class="badge rounded-pill text-bg-secondary me-1">KPIs y pivots</span>
-            <span class="badge rounded-pill text-bg-secondary me-1">Dashboard</span>
-            <span class="badge rounded-pill text-bg-secondary me-1">Insights IA</span>
-            <span class="badge rounded-pill text-bg-secondary me-1">Script de refresh</span>
-            <span class="badge rounded-pill text-bg-secondary">Flujo programado</span>
-          </p>
+          
           <p class="lead">Tu reporte ahora <strong>se actualiza y se distribuye solo</strong>. Enfócate en la estrategia, no en el trabajo repetitivo. 🚀</p>
           <a href="../" class="btn btn-primary"><i class="bi bi-arrow-left me-1"></i> Ir a inicio</a>
         </section>

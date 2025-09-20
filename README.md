@@ -19,8 +19,7 @@ Sitio web estático con landing principal y sección de Recursos (artículos). I
 │   ├── kpis-dashboard-ventas.html
 │   └── workflow-ia-beneficios.html
 ├── index.html               # Landing principal
-├── style.css                # CSS principal (edición)
-├── style.min.css            # CSS minificado (producción)
+├── style.min.css            # CSS principal/minificado (producción)
 ├── script.js                # JS (edición)
 ├── script.min.js            # JS minificado (producción)
 ├── sitemap.xml              # Sitemap para buscadores
@@ -32,7 +31,7 @@ Sitio web estático con landing principal y sección de Recursos (artículos). I
 
 ## Desarrollo local
 - Abrí `index.html` directamente en el navegador o usá una extensión tipo “Live Server”.
-- Editá estilos en `style.css` y JS en `script.js`.
+- Editá JS en `script.js`. Para estilos, editá `style.min.css` directamente o configurá un pequeño pipeline para regenerar el minificado desde una hoja fuente (no incluido en este repo).
 - Para producción, el sitio referencia `style.min.css` y `script.min.js`.
 
 ## Publicación en GitHub Pages

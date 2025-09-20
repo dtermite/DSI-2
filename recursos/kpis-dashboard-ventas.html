@@ -1,292 +1,317 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Automatizar reportes con IA en Excel (Guía paso a paso)</title>
-  <meta name="description" content="Guía práctica para automatizar reportes en Excel usando IA (Copilot), Power Query, Office Scripts y Power Automate. Incluye ejemplos, prompts y código listo para usar." />
-  <style>
-    :root{
-      --bg:#0f172a; /* slate-900 */
-      --card:#111827ee; /* gray-900 */
-      --muted:#cbd5e1; /* slate-300 */
-      --accent:#22d3ee; /* cyan-400 */
-      --accent-2:#a78bfa; /* violet-400 */
-      --ok:#34d399; /* emerald-400 */
-      --warn:#fbbf24; /* amber-400 */
-      --danger:#f87171; /* red-400 */
-      --code:#0b1020;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b1220,#0f172a 40%,#0b1220);color:#e5e7eb;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;line-height:1.6}
-    header{position:sticky;top:0;backdrop-filter: blur(8px);background:#0b1020cc;border-bottom:1px solid #1f2937}
-    .wrap{max-width:1100px;margin:auto;padding:24px}
-    .title{font-size:clamp(1.4rem,2vw+1rem,2.4rem);font-weight:800;letter-spacing:.3px;}
-    .subtitle{color:var(--muted)}
-    .grid{display:grid;gap:18px}
-    .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-    @media (max-width:900px){.grid.cols-2{grid-template-columns:1fr}}
-    section{margin:28px 0}
-    .card{background:var(--card);border:1px solid #1f2937;border-radius:18px;padding:20px;box-shadow:0 20px 60px #0004}
-    h2{font-size:1.6rem;margin:0 0 12px}
-    h3{font-size:1.15rem;margin:20px 0 8px;color:#e2e8f0}
-    p.lead{font-size:1.1rem;color:#e2e8f0}
-    .pill{display:inline-block;padding:.3rem .6rem;border-radius:999px;border:1px solid #334155;color:#cbd5e1;background:#0b1020;margin-right:.4rem;font-size:.8rem}
-    .tag{border-color:#243b53}
-    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;background:#0b1220;border:1px solid #263449;border-radius:8px;padding:.2rem .45rem}
-    code, pre{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
-    pre{background:var(--code);color:#e5e7eb;border:1px solid #1f2937;padding:16px;border-radius:14px;overflow:auto}
-    .callout{border-left:4px solid var(--accent);padding:12px 14px;background:#0b1220;border-radius:12px;border:1px solid #1f2937}
-    .callout.warn{border-left-color:var(--warn)}
-    .callout.ok{border-left-color:var(--ok)}
-    .steps{counter-reset:step}
-    .steps .step{position:relative;padding-left:52px;margin:22px 0}
-    .steps .step:before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:36px;height:36px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));font-weight:800;color:#0b1220}
-    details{border:1px solid #1f2937;border-radius:14px;padding:12px 14px;background:#0b1220}
-    details summary{cursor:pointer;font-weight:700}
-    .badge{font-weight:700;color:#0b1020;background:linear-gradient(135deg,var(--accent),var(--accent-2));padding:.2rem .45rem;border-radius:8px}
-    .toc a{color:#93c5fd;text-decoration:none}
-    .toc a:hover{text-decoration:underline}
-    footer{border-top:1px solid #1f2937;color:#94a3b8}
-    .mono{font-family:ui-monospace,Consolas,monospace}
-    .center{text-align:center}
-    .responsive{max-width:100%;height:auto;border-radius:12px;border:1px solid #1f2937}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KPIs y Dashboard de Ventas (Power BI) | DSI</title>
+  <meta name="description" content="Ejemplos prácticos de KPIs y visuales típicos de un dashboard de ventas en Power BI. Incluye tarjetas KPI, tendencias, barras por región, gauge, embudo y más (SVG incrustados).">
+  <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.min.css">
+  <style>body{font-family:Montserrat,sans-serif}</style>
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.dsinformatica.com.ar/recursos/kpis-dashboard-ventas.html">
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="DSI - Del Sur Informática">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="KPIs y Dashboard de Ventas (Power BI) | DSI">
+  <meta property="og:description" content="Ejemplos de KPIs y visuales típicos de un dashboard de ventas en Power BI (SVG incrustados).">
+  <meta property="og:url" content="https://www.dsinformatica.com.ar/recursos/kpis-dashboard-ventas.html">
+  <meta property="og:image" content="https://www.dsinformatica.com.ar/images/og/kpis-dashboard-ventas-og.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KPIs y Dashboard de Ventas (Power BI) | DSI">
+  <meta name="twitter:description" content="Tarjetas KPI, tendencias, barras por región, gauge y embudo en SVG para dashboards de ventas.">
+  <meta name="twitter:image" content="https://www.dsinformatica.com.ar/images/og/kpis-dashboard-ventas-og.png">
+  <!-- Navegación rel -->
+  <link rel="prev" href="https://www.dsinformatica.com.ar/recursos/">
+  <link rel="next" href="https://www.dsinformatica.com.ar/recursos/workflow-ia-beneficios.html">
+  <!-- JSON-LD Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "KPIs y Dashboard de Ventas (Power BI)",
+    "description": "Ejemplos de KPIs y visuales típicos de un dashboard de ventas en Power BI (SVG incrustados).",
+    "image": [
+      "https://www.dsinformatica.com.ar/images/og/kpis-dashboard-ventas-og.png"
+    ],
+    "author": {"@type": "Organization", "name": "DSI - Del Sur Informática"},
+    "publisher": {
+      "@type": "Organization",
+      "name": "DSI - Del Sur Informática",
+      "logo": {"@type": "ImageObject", "url": "https://www.dsinformatica.com.ar/images/nuevo-logo-dsi-2025.png"}
+    },
+    "datePublished": "2025-09-20",
+    "dateModified": "2025-09-20",
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.dsinformatica.com.ar/recursos/kpis-dashboard-ventas.html"}
+  }
+  </script>
+  <!-- JSON-LD Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.dsinformatica.com.ar/"},
+      {"@type": "ListItem", "position": 2, "name": "Recursos", "item": "https://www.dsinformatica.com.ar/recursos/"},
+      {"@type": "ListItem", "position": 3, "name": "KPIs y Dashboard de Ventas", "item": "https://www.dsinformatica.com.ar/recursos/kpis-dashboard-ventas.html"}
+    ]
+  }
+  </script>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <div class="title">Automatizar reportes con <span class="badge">IA</span> en Excel</div>
-      <div class="subtitle">Guía práctica y lista para publicar — de 0 a un flujo 100% automático con Copilot, Power Query, Office Scripts y Power Automate.</div>
+  <a href="#main-content" class="visually-hidden-focusable">Saltar al contenido principal</a>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a href="https://wa.me/542944201878" class="whatsapp-float" target="_blank" aria-label="Chatea por WhatsApp">
+    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/whatsapp.svg" alt="WhatsApp" style="width:48px;height:48px;">
+  </a>
+
+  <!-- Navbar del sitio -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation" aria-label="Navegación principal">
+    <div class="container">
+      <a class="navbar-brand" href="../" aria-label="Inicio DSI - Del Sur Informática">DSI - Del Sur Informática</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú de navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../#servicios">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link" href="../#proyectos">Proyectos</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="./">Recursos</a></li>
+          <li class="nav-item"><a class="nav-link" href="../#testimonios">Testimonios</a></li>
+          
+        </ul>
+      </div>
     </div>
-  </header>
+  </nav>
 
-  <main class="wrap">
-    <section class="card">
-      <h2>💡 Objetivo</h2>
-      <p class="lead">Configurar un <strong>pipeline de reporte en Excel</strong> que: (1) se actualice solo desde la fuente de datos, (2) genere visuales y KPIs, (3) redacte <em>insights</em> automáticos con <strong>IA (Copilot)</strong> y (4) <strong>envíe</strong> el reporte final por correo o lo guarde como PDF/Excel en la nube.</p>
-      <div class="grid cols-2">
-        <div>
-          <h3>🧰 Requisitos</h3>
-          <ul>
-            <li>Microsoft 365 con Excel de escritorio (preferible) y acceso a <strong>Copilot</strong>.</li>
-            <li>Conectar a OneDrive/SharePoint para el archivo final.</li>
-            <li>Fuentes de datos (CSV, Excel, DB o API) y permisos.</li>
-          </ul>
+  <main id="main-content" role="main" class="mt-5 pt-4">
+    <section class="py-4">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h1 class="h2 mb-0">KPIs y Dashboard de Ventas (Power BI)</h1>
+          <a href="../" class="btn btn-outline-primary"><i class="bi bi-house-door me-1"></i> Ir a inicio</a>
         </div>
-        <div>
-          <h3>🚀 Resultado</h3>
-          <ul>
-            <li>Archivo <span class="mono">Reporte.xlsx</span> con pestañas <em>Datos</em>, <em>Modelo</em>, <em>Dashboard</em>, <em>Insights IA</em>.</li>
-            <li>Script que refresca, actualiza visuales y exporta a PDF/Excel.</li>
-            <li>Flujo programado que distribuye el reporte automáticamente.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Índice</h2>
-      <ol class="toc">
-        <li><a href="#datos">Preparar y limpiar datos con Power Query</a></li>
-        <li><a href="#modelo">Modelo, KPIs y tablas dinámicas</a></li>
-        <li><a href="#dashboard">Dashboard con gráficos</a></li>
-        <li><a href="#copilot">Generar insights con IA (Copilot)</a></li>
-        <li><a href="#script">Automatizar con Office Scripts (refresh & export)</a></li>
-        <li><a href="#flow">Programar distribución con Power Automate</a></li>
-        <li><a href="#plus">Opcionales: Parámetros, Python en Excel y control de calidad</a></li>
-        <li><a href="#troubleshoot">Solución de problemas</a></li>
-      </ol>
-    </section>
-
-    <section id="datos" class="card">
-      <h2>1) Preparar y limpiar datos con Power Query</h2>
-      <div class="steps">
-        <div class="step">
-          <strong>Conectar</strong> → <span class="kbd">Datos &gt; Obtener datos</span> (CSV/Excel/SQL/API). Cargar como <em>Solo crear conexión</em> y habilitar <em>Agregar al modelo de datos</em> si usarás medidas.
-        </div>
-        <div class="step">
-          <strong>Transformar</strong>: abrir <span class="kbd">Transformar datos</span> y aplicar pasos: tipo de datos, dividir/combinar columnas, quitar nulos, normalizar texto, crear columnas personalizadas.
-        </div>
-        <div class="step">
-          <strong>Parámetros</strong> (opcional): en Power Query, <em>Administrar parámetros</em> para rutas/fechas. Útil para mover el archivo sin romper conexiones.
-        </div>
-      </div>
-      <details>
-        <summary>📎 Dataset de ejemplo (CSV)</summary>
-        <pre>fecha,region,producto,vendedor,unidades,precio
-2025-07-01,Centro,A,María,12,150
-2025-07-01,Norte,B,Carlos,9,200
-2025-07-02,Sur,A,Luis,5,150
-2025-07-03,Centro,C,María,7,300
-2025-07-04,Norte,A,Ana,10,150
-2025-07-05,Sur,B,Pedro,4,200
-</pre>
-      </details>
-      <div class="callout"><strong>Tip:</strong> Nombra las consultas de Power Query con prefijos (p.ej. <span class="mono">fct_Ventas</span>, <span class="mono">dim_Producto</span>) para mantener orden.</div>
-    </section>
-
-    <section id="modelo" class="card">
-      <h2>2) Modelo, KPIs y tablas dinámicas</h2>
-      <p>En la hoja <strong>Modelo</strong> crea tus medidas (si usas el Modelo de datos) o columnas calculadas. Para un enfoque directo en Excel, puedes usar <em>Tablas dinámicas</em> desde el rango/consulta.</p>
-      <div class="grid cols-2">
-        <div>
-          <h3>Medidas básicas (Ejemplos)</h3>
-          <ul>
-            <li><span class="mono">Unidades Totales</span>: suma de <em>unidades</em>.</li>
-            <li><span class="mono">Ingresos</span>: suma de <em>unidades * precio</em>.</li>
-            <li><span class="mono">Ticket Promedio</span>: <em>Ingresos / Unidades</em>.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Tabla dinámica</h3>
-          <ol>
-            <li>Insertar &gt; Tabla dinámica &gt; Fuente: <em>consulta Power Query</em>.</li>
-            <li>Filas: <em>fecha (mes)</em> • Columnas: <em>región</em> • Valores: <em>Ingresos</em>.</li>
-            <li>Habilitar segmentadores (slicers) para <em>producto</em> y <em>vendedor</em>.</li>
+        <nav aria-label="breadcrumb" class="mb-3">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="./">Recursos</a></li>
+            <li class="breadcrumb-item active" aria-current="page">KPIs y Dashboard de Ventas</li>
           </ol>
+        </nav>
+
+
+    
+        <!-- Grilla 1: 3 columnas -->
+        <div class="row g-3 mb-3">
+          <div class="col-12 col-md-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <figure class="mb-0">
+                  <svg viewBox="0 0 300 160" width="100%" height="auto" role="img" aria-labelledby="kpi1title kpi1desc">
+                    <title id="kpi1title">KPI Ingresos</title>
+                    <desc id="kpi1desc">Tarjeta KPI con valor principal y variación</desc>
+                    <defs>
+                      <linearGradient id="g1" x1="0" x2="1"><stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#a78bfa"/></linearGradient>
+                    </defs>
+                    <rect x="0" y="0" width="300" height="160" rx="16" fill="#0b1220" stroke="#22314f"/>
+                    <text x="20" y="36" fill="#9fb2d1" font-size="14">Ingresos (mes)</text>
+                    <text x="20" y="80" fill="#e5e7eb" font-size="36" font-weight="700">$ 1.28M</text>
+                    <g class="delta">
+                      <polygon points="20,110 32,96 44,110" fill="#34d399"/>
+                      <text x="52" y="112" fill="#34d399" font-size="14" font-weight="700">+6.4% MoM</text>
+                      <circle cx="260" cy="40" r="10" fill="url(#g1)"/>
+                      <text x="276" y="44" text-anchor="end" fill="#9fb2d1" font-size="12">KPI</text>
+                    </g>
+                  </svg>
+                  <figcaption class="text-muted small mt-2">1) Tarjeta KPI con variación intermensual y marca de estado.</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <figure class="mb-0">
+                  <svg viewBox="0 0 300 160" width="100%" height="auto" role="img" aria-labelledby="lineatitle lineadesc">
+                    <title id="lineatitle">Tendencia 12 meses</title>
+                    <desc id="lineadesc">Gráfico de línea simplificado</desc>
+                    <rect x="0" y="0" width="300" height="160" rx="16" fill="#0b1220" stroke="#22314f"/>
+                    <line x1="36" y1="20" x2="36" y2="130" stroke="#2b3b5b"/>
+                    <line x1="36" y1="130" x2="280" y2="130" stroke="#2b3b5b"/>
+                    <polyline fill="none" stroke="#22d3ee" stroke-width="3" points="36,120 60,118 84,112 108,100 132,96 156,90 180,88 204,82 228,76 252,70 276,64"/>
+                    <g fill="#22d3ee">
+                      <circle cx="36" cy="120" r="3"/><circle cx="60" cy="118" r="3"/><circle cx="84" cy="112" r="3"/><circle cx="108" cy="100" r="3"/>
+                      <circle cx="132" cy="96" r="3"/><circle cx="156" cy="90" r="3"/><circle cx="180" cy="88" r="3"/><circle cx="204" cy="82" r="3"/>
+                      <circle cx="228" cy="76" r="3"/><circle cx="252" cy="70" r="3"/><circle cx="276" cy="64" r="3"/>
+                    </g>
+                    <text x="40" y="28" fill="#9fb2d1" font-size="12">Ingresos Rolling 12M</text>
+                  </svg>
+                  <figcaption class="text-muted small mt-2">2) Tendencia anual (Rolling 12M) para contexto y estacionalidad.</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <figure class="mb-0">
+                  <svg viewBox="0 0 300 160" width="100%" height="auto" role="img" aria-labelledby="bartitle bardesc">
+                    <title id="bartitle">Ingresos por Región</title>
+                    <desc id="bardesc">Gráfico de barras</desc>
+                    <rect x="0" y="0" width="300" height="160" rx="16" fill="#0b1220" stroke="#22314f"/>
+                    <g>
+                      <rect x="40" y="60" width="36" height="70" fill="#60a5fa"/>
+                      <rect x="92" y="44" width="36" height="86" fill="#22d3ee"/>
+                      <rect x="144" y="72" width="36" height="58" fill="#a78bfa"/>
+                      <rect x="196" y="52" width="36" height="78" fill="#f59e0b"/>
+                    </g>
+                    <text x="58" y="142" fill="#9fb2d1" font-size="11">N</text>
+                    <text x="110" y="142" fill="#9fb2d1" font-size="11">C</text>
+                    <text x="162" y="142" fill="#9fb2d1" font-size="11">S</text>
+                    <text x="214" y="142" fill="#9fb2d1" font-size="11">E</text>
+                    <text x="20" y="24" fill="#9fb2d1" font-size="12">Mix por Región</text>
+                  </svg>
+                  <figcaption class="text-muted small mt-2">3) Comparación de ingresos por región (barras). Ideal para detectar mix.</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- Grilla 2: 2 columnas -->
+        <div class="row g-3 mb-3">
+          <div class="col-12 col-md-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <figure class="mb-0">
+                  <svg viewBox="0 0 320 200" width="100%" height="auto" role="img" aria-labelledby="gaugetitle gaugedesc">
+                    <title id="gaugetitle">Cumplimiento de Objetivo</title>
+                    <desc id="gaugedesc">Indicador tipo velocímetro</desc>
+                    <defs>
+                      <linearGradient id="gg" x1="0" x2="1">
+                        <stop offset="0%" stop-color="#f87171"/>
+                        <stop offset="50%" stop-color="#fbbf24"/>
+                        <stop offset="100%" stop-color="#34d399"/>
+                      </linearGradient>
+                    </defs>
+                    <rect x="0" y="0" width="320" height="200" rx="16" fill="#0b1220" stroke="#22314f"/>
+                    <path d="M40,150 A120,120 0 0 1 280,150" fill="none" stroke="url(#gg)" stroke-width="20"/>
+                    <line x1="160" y1="150" x2="240" y2="110" stroke="#e5e7eb" stroke-width="4"/>
+                    <circle cx="160" cy="150" r="6" fill="#e5e7eb"/>
+                    <text x="160" y="175" text-anchor="middle" fill="#e5e7eb" font-size="22" font-weight="700">92%</text>
+                    <text x="160" y="36" text-anchor="middle" fill="#9fb2d1" font-size="12">Cumplimiento vs. Objetivo</text>
+                  </svg>
+                  <figcaption class="text-muted small mt-2">4) Gauge de cumplimiento del objetivo (semáforo integrado).</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <figure class="mb-0">
+                  <svg viewBox="0 0 320 200" width="100%" height="auto" role="img" aria-labelledby="funneltitle funneldesc">
+                    <title id="funneltitle">Embudo de Conversión</title>
+                    <desc id="funneldesc">Etapas de marketing/ventas</desc>
+                    <rect x="0" y="0" width="320" height="200" rx="16" fill="#0b1220" stroke="#22314f"/>
+                    <polygon points="40,40 280,40 250,80 70,80" fill="#60a5fa"/>
+                    <polygon points="70,90 250,90 230,125 90,125" fill="#22d3ee"/>
+                    <polygon points="90,135 230,135 210,165 110,165" fill="#a78bfa"/>
+                    <text x="160" y="62" text-anchor="middle" fill="#0b1220" font-weight="700">Visitas 120k</text>
+                    <text x="160" y="112" text-anchor="middle" fill="#0b1220" font-weight="700">Leads 18k</text>
+                    <text x="160" y="155" text-anchor="middle" fill="#0b1220" font-weight="700">Ventas 2.4k</text>
+                    <text x="160" y="28" text-anchor="middle" fill="#9fb2d1" font-size="12">Embudo de Conversión</text>
+                  </svg>
+                  <figcaption class="text-muted small mt-2">5) Funnel de conversión: paso a paso desde visitas a ventas.</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grilla 3: 2 columnas -->
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-md-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <figure class="mb-0">
+                  <svg viewBox="0 0 320 140" width="100%" height="auto" role="img" aria-labelledby="multikpi multikpidesc">
+                    <title id="multikpi">Panel de KPIs</title>
+                    <desc id="multikpidesc">Cuatro tarjetas con mini-tendencias</desc>
+                    <rect x="0" y="0" width="320" height="140" rx="16" fill="#0b1220" stroke="#22314f"/>
+                    <rect x="12" y="12" width="140" height="52" rx="10" fill="#0b1220" stroke="#22314f"/>
+                    <text x="22" y="30" fill="#9fb2d1" font-size="11">Unidades</text>
+                    <text x="22" y="50" fill="#e5e7eb" font-size="16" font-weight="700">84.2k</text>
+                    <polyline points="100,56 108,50 116,54 124,48 132,46 140,40 148,42" stroke="#34d399" stroke-width="2" fill="none"/>
+                    <rect x="168" y="12" width="140" height="52" rx="10" fill="#0b1220" stroke="#22314f"/>
+                    <text x="178" y="30" fill="#9fb2d1" font-size="11">Margen %</text>
+                    <text x="178" y="50" fill="#e5e7eb" font-size="16" font-weight="700">38.6%</text>
+                    <polyline points="256,56 264,58 272,52 280,54 288,46 296,44 304,40" stroke="#22d3ee" stroke-width="2" fill="none"/>
+                    <rect x="12" y="76" width="140" height="52" rx="10" fill="#0b1220" stroke="#22314f"/>
+                    <text x="22" y="94" fill="#9fb2d1" font-size="11">NPS</text>
+                    <text x="22" y="114" fill="#e5e7eb" font-size="16" font-weight="700">62</text>
+                    <polyline points="100,120 108,118 116,110 124,112 132,104 140,98 148,100" stroke="#a78bfa" stroke-width="2" fill="none"/>
+                    <rect x="168" y="76" width="140" height="52" rx="10" fill="#0b1220" stroke="#22314f"/>
+                    <text x="178" y="94" fill="#9fb2d1" font-size="11">Churn %</text>
+                    <text x="178" y="114" fill="#e5e7eb" font-size="16" font-weight="700">2.1%</text>
+                    <polyline points="246,120 254,116 262,118 270,122 278,124 286,126 294,128" stroke="#f87171" stroke-width="2" fill="none"/>
+                  </svg>
+                  <figcaption class="text-muted small mt-2">6) Panel compacto de tarjetas con mini-tendencias (sparklines).</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <figure class="mb-0">
+                  <svg viewBox="0 0 320 160" width="100%" height="auto" role="img" aria-labelledby="cascadatitle cascadadesc">
+                    <title id="cascadatitle">Análisis de Margen (Cascada)</title>
+                    <desc id="cascadadesc">Ingresos - Costos - Descuentos - Resultado</desc>
+                    <rect x="0" y="0" width="320" height="160" rx="16" fill="#0b1220" stroke="#22314f"/>
+                    <line x1="40" y1="130" x2="280" y2="130" stroke="#2b3b5b"/>
+                    <rect x="50" y="50" width="30" height="80" fill="#60a5fa"/>
+                    <rect x="100" y="80" width="30" height="50" fill="#f87171"/>
+                    <rect x="150" y="70" width="30" height="60" fill="#f87171"/>
+                    <rect x="200" y="60" width="30" height="70" fill="#22d3ee"/>
+                    <rect x="250" y="55" width="30" height="75" fill="#34d399"/>
+                    <text x="65" y="46" text-anchor="middle" fill="#9fb2d1" font-size="11">Ingresos</text>
+                    <text x="115" y="78" text-anchor="middle" fill="#9fb2d1" font-size="11">Costos</text>
+                    <text x="165" y="68" text-anchor="middle" fill="#9fb2d1" font-size="11">Desc.</text>
+                    <text x="215" y="56" text-anchor="middle" fill="#9fb2d1" font-size="11">Otros</text>
+                    <text x="265" y="50" text-anchor="middle" fill="#9fb2d1" font-size="11">Margen</text>
+                  </svg>
+                  <figcaption class="text-muted small mt-2">7) Cascada de margen para explicar contribuciones al resultado.</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nota final -->
+        
+
+        <section class="text-center mb-4">
+          <p class="lead">Ejemplos para inspirar tu próximo <strong>dashboard de ventas</strong>.</p>
+          <a href="../" class="btn btn-primary"><i class="bi bi-arrow-left me-1"></i> Ir a inicio</a>
+        </section>
       </div>
-      <div class="callout ok">Con Copilot puedes pedir: <em>“Crea una tabla dinámica con ingresos por mes y región y agrega un gráfico de columnas.”</em></div>
-    </section>
-
-    <section id="dashboard" class="card">
-      <h2>3) Dashboard con gráficos</h2>
-      <p>En la hoja <strong>Dashboard</strong>, inserta gráficos (columnas, líneas, mapa si aplica). Nombra rangos para facilitar scripting.</p>
-      <ul>
-        <li>Selecciona estilos consistentes y usa formato condicional para KPIs (verde ▲, rojo ▼).</li>
-        <li>Agrega un encabezado con el período (p.ej., <em>Últimos 30 días</em>).</li>
-        <li>Bloque “KPIs”: Ingresos, Unidades, Ticket Promedio, Top producto/Región.</li>
-      </ul>
-    </section>
-
-    <section id="copilot" class="card">
-      <h2>4) Generar <em>insights</em> con IA (Copilot)</h2>
-      <p>Abre Copilot en Excel y utiliza <strong>prompts contextuales</strong> para obtener explicaciones, tendencias y resúmenes que se actualizan con tus datos.</p>
-      <h3>Prompts recomendados</h3>
-      <ul>
-        <li>“Analiza la tabla <span class="mono">fct_Ventas</span> y resume en 5 puntos las principales tendencias del último mes.”</li>
-        <li>“¿Qué regiones explican el 80% de los ingresos? Devuélvelo en una tabla.”</li>
-        <li>“Genera un texto ejecutivo (80-120 palabras) con hallazgos y recomendaciones accionables.”</li>
-        <li>“Propón 3 alertas automáticas basadas en umbrales (ej., caída &gt; 15% intermensual).”</li>
-      </ul>
-      <div class="callout warn"><strong>Privacidad:</strong> Evita incluir datos sensibles en los prompts. Usa muestras o vistas con campos mínimos necesarios.</div>
-      <h3>Insertar resultados en la hoja</h3>
-      <p>Pide a Copilot: “Escribe el resumen en la hoja <em>Insights IA</em>, celda A2”. Luego da formato con estilo de informe.</p>
-    </section>
-
-    <section id="script" class="card">
-      <h2>5) Automatizar con Office Scripts (Refresh & Export)</h2>
-      <p>En Excel para la Web: <span class="kbd">Automatizar &gt; Nuevo script</span>. Usa el siguiente script para <strong>refrescar consultas</strong> y <strong>exportar a PDF</strong> y <strong>guardar una copia Excel</strong>.</p>
-      <h3>Script listo para usar</h3>
-      <pre><code class="language-ts">/**
- * Office Script: Refresh & Export
- * - Refresca todas las conexiones/consultas
- * - Actualiza tablas dinámicas
- * - Exporta a PDF (hoja "Dashboard")
- * - Guarda copia con timestamp
- */
-async function main(workbook: ExcelScript.Workbook) {
-  const date = new Date();
-  const yyyy = date.getFullYear();
-  const mm = String(date.getMonth()+1).padStart(2,"0");
-  const dd = String(date.getDate()).padStart(2,"0");
-  const hh = String(date.getHours()).padStart(2,"0");
-  const mi = String(date.getMinutes()).padStart(2,"0");
-  const stamp = `${yyyy}${mm}${dd}-${hh}${mi}`;
-
-  // 1) Refrescar conexiones/consultas
-  try {
-    workbook.refreshAllDataConnections();
-  } catch(e) { console.log("No data connections or refresh failed:", e); }
-
-  // 2) Actualizar tablas dinámicas
-  try {
-    const pivots = workbook.getPivotTables();
-    pivots.forEach(p => p.refresh());
-  } catch(e) { console.log("No pivot tables or refresh failed:", e); }
-
-  // 3) Exportar a PDF solo la hoja Dashboard
-  const dashboard = workbook.getWorksheet("Dashboard");
-  if (dashboard) {
-    const exportOptions: ExcelScript.WorkbookPdfExportOptions = {
-      // Ajusta según tus márgenes/área
-      onlySelectedWorksheet: true,
-      includeDocumentProperties: true,
-      scale: 90
-    };
-    await workbook.getApplication().createPdf(exportOptions);
-  }
-
-  // 4) Guardar una copia con timestamp
-  const fileName = `Reporte_Automatizado_${stamp}.xlsx`;
-  await workbook.saveAs({
-    fileName,
-    conflictResolution: ExcelScript.SaveConflictResolution.replace,
-  });
-}
-</code></pre>
-      <div class="callout">Ajusta el nombre de la hoja de salida (p.ej., <span class="mono">"Dashboard"</span>) y el <em>scale</em> hasta que el PDF quede perfecto.</div>
-    </section>
-
-    <section id="flow" class="card">
-      <h2>6) Programar distribución con Power Automate</h2>
-      <ol class="steps">
-        <li class="step"><strong>Disparador</strong>: “Recurrente” (p.ej., cada lunes 08:00).</li>
-        <li class="step"><strong>Acción: Ejecutar script de Excel Online (Business)</strong> → selecciona el archivo en OneDrive/SharePoint y el script <span class="mono">main</span>.</li>
-        <li class="step"><strong>Acción: Obtener archivo</strong> (PDF/Excel) desde la misma carpeta.</li>
-        <li class="step"><strong>Acción: Enviar correo (Outlook)</strong> con adjunto o <strong>Guardar archivo</strong> en SharePoint/Teams con nombre <span class="mono">Reporte_Automatizado_{año}{mes}{día}.pdf</span>.</li>
-      </ol>
-      <div class="callout ok">Suma lógica condicional: si “Ingresos &lt; Objetivo” entonces notifica a gerencia con asunto ⚠️.</div>
-    </section>
-
-    <section id="plus" class="card">
-      <h2>7) Opcionales potentes</h2>
-      <h3>Parámetros de período</h3>
-      <p>Crea una hoja <em>Config</em> con celdas <span class="mono">FechaInicio</span> y <span class="mono">FechaFin</span>. Úsalas en Power Query para filtrar.</p>
-      <h3>Python en Excel</h3>
-      <p>Para modelos de pronóstico o clasificación, inserta una celda Python (Excel) y calcula predicciones. Exporta resultados a una tabla y conéctala al dashboard.</p>
-      <pre><code># Ejemplo mínimo en una celda Python (pseudocódigo)
-import pandas as pd
-# df = xl("fct_Ventas")  # referencia a una Tabla de Excel
-# pronostico = tu_modelo(df)
-# xlw("Pronostico", pronostico)  # volcar salida a Excel
-</code></pre>
-      <h3>Control de calidad</h3>
-      <ul>
-        <li>Valida tipos de datos en Power Query.</li>
-        <li>Agrega pruebas simples (conteos, totales) y compáralos con períodos previos.</li>
-        <li>Usa formato condicional para destacar outliers.</li>
-      </ul>
-    </section>
-
-    <section id="troubleshoot" class="card">
-      <h2>8) Solución de problemas</h2>
-      <ul>
-        <li><strong>Conexión falla:</strong> verifica credenciales y orígenes en <em>Consultas y conexiones</em>.</li>
-        <li><strong>PDF en blanco:</strong> asegúrate de seleccionar la hoja correcta y ajustar el área de impresión.</li>
-        <li><strong>Copilot no responde bien:</strong> pide tablas intermedias, limita columnas y refina el prompt con contexto concreto.</li>
-        <li><strong>Lentitud:</strong> deshabilita cálculos volátiles, reduce pasos de PQ y usa columnas de tipo entero/fecha.</li>
-      </ul>
-      <div class="callout warn">Recuerda mantener tus datos en OneDrive/SharePoint para que los flujos puedan acceder y no dependan de tu PC encendida.</div>
-    </section>
-
-    <section class="card center">
-      <h2>🎯 Checklist final</h2>
-      <p>
-        <span class="pill">Datos conectados</span>
-        <span class="pill">KPIs y pivots</span>
-        <span class="pill">Dashboard</span>
-        <span class="pill">Insights IA</span>
-        <span class="pill">Script de refresh</span>
-        <span class="pill">Flujo programado</span>
-      </p>
-      <p class="lead">Tu reporte ahora <strong>se actualiza y se distribuye solo</strong>. Enfócate en la estrategia, no en el trabajo repetitivo. 🚀</p>
     </section>
   </main>
 
-  <footer class="wrap">
-    <p>Escrito para profesionales que desean acelerar su analítica en Excel con IA. Mantén la guía a mano y mejórala según tus procesos.</p>
+  <footer class="bg-dark text-white text-center p-3">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 DSI - Del Sur Informática. Todos los derechos reservados.</p>
+    </div>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="../script.min.js" defer></script>
 </body>
 </html>
