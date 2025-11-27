@@ -1,18 +1,21 @@
 /* Efecto hover para cards de proyectos */
 .project-card {
     transition: box-shadow 0.3s, transform 0.3s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     cursor: pointer;
 }
+
 .project-card:hover {
-    box-shadow: 0 12px 32px rgba(0,86,179,0.18), 0 2px 8px rgba(0,0,0,0.10);
+    box-shadow: 0 12px 32px rgba(0, 86, 179, 0.18), 0 2px 8px rgba(0, 0, 0, 0.10);
     transform: translateY(-10px) scale(1.05);
     z-index: 2;
 }
+
 .project-card:hover .project-img-hover {
     transform: scale(1.09);
     filter: brightness(1.08) saturate(1.1);
 }
+
 /* Botón flotante de WhatsApp */
 .whatsapp-float {
     position: fixed;
@@ -26,31 +29,47 @@
     justify-content: center;
     background: #25d366;
     border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     transition: background 0.3s;
 }
+
 .whatsapp-float:hover {
     background: #1ebe57;
 }
-/* Reducir tamaño de imágenes del carrusel de proyectos */
 
-/* Imágenes de cards de proyectos: mismo tamaño y proporción */
-.project-img-hover {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    aspect-ratio: 4/3;
-    background: #f8f9fa;
-    transition: transform 0.3s;
-}
 /* Paleta de colores basada en el logo */
 :root {
-    --dsi-blue: #0056b3; /* Un azul brillante para destacar */
+    --dsi-blue: #0056b3;
+    /* Un azul brillante para destacar */
     --dsi-dark-blue: #004488;
-    --dsi-gray: #6c757d; /* Gris de las montañas */
-    --dsi-light-gray: #f8f9fa; /* Fondo claro */
-    --dsi-black: #212529; /* Color de texto oscuro */
+    --dsi-gray: #6c757d;
+    /* Gris de las montañas */
+    --dsi-light-gray: #f8f9fa;
+    /* Fondo claro */
+    --dsi-black: #212529;
+    /* Color de texto oscuro */
     --dsi-white: #fff;
+}
+
+html {
+    scroll-padding-top: 70px;
+    /* Altura del navbar + un poco de espacio */
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .animated-element,
+    .project-card,
+    .service-card,
+    .btn-primary {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+    }
 }
 
 body {
@@ -67,10 +86,7 @@ body {
 .hero-section {
     /* Preparado para futura versión WebP (añadir images/Nuevo Logo DSI 2025.webp cuando esté disponible) */
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        image-set(
-            url('images/nuevo-logo-dsi-2025.png') type('image/png')
-        );
-    background-size: cover;
+        image-set(url('images/nuevo-logo-dsi-2025.png') type('image/png'));
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
@@ -79,7 +95,9 @@ body {
     background-attachment: fixed;
     background-blend-mode: multiply;
 }
-.hero-section h1, .hero-section p {
+
+.hero-section h1,
+.hero-section p {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -89,16 +107,19 @@ body {
     border-color: var(--dsi-blue);
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
 .btn-primary:hover {
     background-color: var(--dsi-dark-blue);
     border-color: var(--dsi-dark-blue);
-    transform: scale(1.05); /* Efecto de crecimiento al pasar el mouse */
+    transform: scale(1.05);
+    /* Efecto de crecimiento al pasar el mouse */
 }
 
 /* Secciones generales */
 section {
     padding: 6rem 0;
 }
+
 #proyectos {
     background-color: var(--dsi-light-gray);
 }
@@ -109,10 +130,12 @@ section {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
 }
+
 .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
+
 .service-icon {
     font-size: 3rem;
     color: var(--dsi-blue);
@@ -124,7 +147,7 @@ section {
     background-color: #fff;
     border-left: 5px solid var(--dsi-blue);
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #222;
     font-size: 1rem;
     line-height: 1.4;
@@ -133,11 +156,13 @@ section {
     margin-left: auto;
     margin-right: auto;
 }
+
 .testimonial-card .fst-italic {
     color: #222;
     font-size: 1.1em;
     font-style: italic;
 }
+
 .testimonial-card cite {
     color: #0056b3;
     font-size: 1em;
@@ -146,15 +171,17 @@ section {
 
 /* Formulario de Google */
 .google-form-container {
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    overflow: hidden; /* Para que el iframe se ajuste al radio del borde */
+    overflow: hidden;
+    /* Para que el iframe se ajuste al radio del borde */
 }
 
 /* Pie de página (Footer) */
 .social-icons a {
     transition: color 0.3s ease;
 }
+
 .social-icons a:hover {
     color: var(--dsi-blue) !important;
 }
@@ -170,6 +197,7 @@ section {
     opacity: 1;
     transform: translateY(0);
 }
+
 .webp-supported .hero-section {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/nuevo-logo-dsi-2025.webp');
 }

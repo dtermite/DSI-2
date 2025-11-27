@@ -20,29 +20,43 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Desplazamiento suave para los enlaces de la barra de navegación
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+    // Nota: CSS scroll-behavior: smooth y scroll-padding-top manejan esto nativamente en navegadores modernos.
+    // Mantenemos este código como fallback o para control preciso si es necesario, pero simplificado.
+    document.addEventListener('click', function (e) {
+        if (e.target.matches('a[href^="#"]')) {
             e.preventDefault();
-
-            const targetId = this.getAttribute('href');
+            const targetId = e.target.getAttribute('href');
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
+                // El scroll-padding-top en CSS debería manejar el offset, pero si usamos JS explícito:
+                const headerOffset = 60;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
                 window.scrollTo({
-                    top: targetElement.offsetTop - 60, // Resta la altura del navbar
-                    behavior: 'smooth'
+                    top: offsetPosition,
+                    behavior: "smooth"
                 });
             }
-        });
+        }
     });
 
-    // Efecto de crecimiento en el logo al hacer scroll
+    // Efecto de crecimiento en el logo al hacer scroll (Optimizado)
     const navbarBrand = document.querySelector('.navbar-brand');
+    let ticking = false;
+
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbarBrand.style.transform = 'scale(1.1)';
-        } else {
-            navbarBrand.style.transform = 'scale(1)';
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                if (window.scrollY > 50) {
+                    navbarBrand.style.transform = 'scale(1.1)';
+                } else {
+                    navbarBrand.style.transform = 'scale(1)';
+                }
+                ticking = false;
+            });
+            ticking = true;
         }
     });
 
