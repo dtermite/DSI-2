@@ -86,4 +86,100 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
+
+    // 6. Chatbot Functionality
+    const chatbotToggle = document.getElementById('chatbot-toggle');
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const chatbotClose = document.getElementById('chatbot-close');
+    const chatbotSend = document.getElementById('chatbot-send');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+
+    const WEBHOOK_URL = 'https://automatizacion.dsinformatica.com.ar/webhook-test/chatcine';
+
+    function addMessage(message, isUser = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `chat-message ${isUser ? 'user' : 'bot'}`;
+        messageDiv.textContent = message;
+        chatbotMessages.appendChild(messageDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function addLoadingIndicator() {
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'chat-message bot';
+        loadingDiv.id = 'loading-indicator';
+        loadingDiv.innerHTML = '<span>Escribiendo</span><span class="dots">...</span>';
+        chatbotMessages.appendChild(loadingDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function removeLoadingIndicator() {
+        const loading = document.getElementById('loading-indicator');
+        if (loading) loading.remove();
+    }
+
+    async function sendMessageToWebhook(message) {
+        try {
+            addLoadingIndicator();
+            const response = await fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: message })
+            });
+
+            if (!response.ok) {
+                throw new Error('Error en la respuesta del servidor');
+            }
+
+            const data = await response.json();
+            removeLoadingIndicator();
+            
+            // Obtener respuesta del webhook
+            const botResponse = data.response || 'Lo siento, no pude procesar tu mensaje.';
+            addMessage(botResponse, false);
+        } catch (error) {
+            removeLoadingIndicator();
+            addMessage('Lo siento, hubo un error al procesar tu mensaje. Por favor, intenta nuevamente.', false);
+            console.error('Error:', error);
+        }
+    }
+
+    function handleSendMessage() {
+        const message = chatbotInput.value.trim();
+        if (message) {
+            addMessage(message, true);
+            chatbotInput.value = '';
+            sendMessageToWebhook(message);
+        }
+    }
+
+    if (chatbotToggle) {
+        chatbotToggle.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('chatbot-hidden');
+            if (!chatbotWindow.classList.contains('chatbot-hidden') && chatbotMessages.children.length === 0) {
+                addMessage('¡Hola! Soy el asistente virtual de DSI. ¿En qué puedo ayudarte hoy?', false);
+            }
+        });
+    }
+
+    if (chatbotClose) {
+        chatbotClose.addEventListener('click', () => {
+            chatbotWindow.classList.add('chatbot-hidden');
+        });
+    }
+
+    if (chatbotSend) {
+        chatbotSend.addEventListener('click', handleSendMessage);
+    }
+
+    if (chatbotInput) {
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSendMessage();
+            }
+        });
+    }
 });
