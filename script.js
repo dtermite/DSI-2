@@ -112,19 +112,30 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     async function sendMessageToWebhook(message) {
+        // Verificar si ya hay una petición en curso
+        if (document.getElementById('loading-indicator')) {
+            console.log('Ya hay una petición en curso, ignorando...');
+            return;
+        }
+
         try {
             addLoadingIndicator();
             console.log('Enviando mensaje al webhook:', WEBHOOK_URL);
             console.log('Mensaje:', message);
+            
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 segundos timeout
             
             const response = await fetch(WEBHOOK_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ message: message })
+                body: JSON.stringify({ message: message }),
+                signal: controller.signal
             });
 
+            clearTimeout(timeoutId);
             console.log('Response status:', response.status);
             console.log('Response headers:', [...response.headers.entries()]);
             
@@ -156,12 +167,18 @@ document.addEventListener("DOMContentLoaded", function() {
             addMessage(botResponse, false);
         } catch (error) {
             removeLoadingIndicator();
-            addMessage('Lo siento, hubo un error al procesar tu mensaje. Por favor, intenta nuevamente.', false);
-            console.error('Error completo:', error);
-            console.error('Error name:', error.name);
-            console.error('Error message:', error.message);
-            if (error instanceof TypeError) {
-                console.error('Posible error de CORS o red');
+            
+            if (error.name === 'AbortError') {
+                console.error('La petición tardó demasiado y fue cancelada');
+                addMessage('La petición tardó demasiado. Por favor, intenta nuevamente.', false);
+            } else {
+                addMessage('Lo siento, hubo un error al procesar tu mensaje. Por favor, intenta nuevamente.', false);
+                console.error('Error completo:', error);
+                console.error('Error name:', error.name);
+                console.error('Error message:', error.message);
+                if (error instanceof TypeError) {
+                    console.error('Posible error de CORS o red');
+                }
             }
         }
     }
