@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const chatbotInput = document.getElementById('chatbot-input');
     const chatbotMessages = document.getElementById('chatbot-messages');
 
-    const WEBHOOK_URL = 'https://automatizacion.dsinformatica.com.ar/webhook-test/chatcine';
+    const WEBHOOK_URL = 'https://automatizacion.dsinformatica.com.ar/webhook-test/dsibot';
 
     function addMessage(message, isUser = false) {
         const messageDiv = document.createElement('div');
@@ -79,10 +79,29 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function addLoadingIndicator() {
+        // Agregar keyframes si no existen
+        if (!document.getElementById('typing-animation-style')) {
+            const style = document.createElement('style');
+            style.id = 'typing-animation-style';
+            style.textContent = `
+                @keyframes typingDot {
+                    0%, 60%, 100% { 
+                        transform: translateY(0); 
+                        opacity: 0.6; 
+                    }
+                    30% { 
+                        transform: translateY(-12px); 
+                        opacity: 1; 
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
         const loadingDiv = document.createElement('div');
         loadingDiv.className = 'chat-message bot';
         loadingDiv.id = 'loading-indicator';
-        loadingDiv.innerHTML = '<span>Escribiendo</span><span class="dots">...</span>';
+        loadingDiv.innerHTML = '<div class="typing-indicator" style="display:flex;align-items:center;gap:6px;padding:10px 0;height:30px;"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background-color:#0056b3;animation:typingDot 1.4s infinite ease-in-out;animation-delay:0s;"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background-color:#0056b3;animation:typingDot 1.4s infinite ease-in-out;animation-delay:0.2s;"></span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background-color:#0056b3;animation:typingDot 1.4s infinite ease-in-out;animation-delay:0.4s;"></span></div>';
         chatbotMessages.appendChild(loadingDiv);
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
@@ -103,20 +122,38 @@ document.addEventListener("DOMContentLoaded", function() {
                 body: JSON.stringify({ message: message })
             });
 
+            console.log('Response status:', response.status);
+            
             if (!response.ok) {
-                throw new Error('Error en la respuesta del servidor');
+                const errorText = await response.text();
+                console.error('Error response:', errorText);
+                throw new Error(`Error del servidor: ${response.status}`);
             }
 
-            const data = await response.json();
+            const contentType = response.headers.get('content-type');
+            let data;
+            
+            if (contentType && contentType.includes('application/json')) {
+                data = await response.json();
+                console.log('JSON response:', data);
+            } else {
+                const textData = await response.text();
+                console.log('Text response:', textData);
+                // Si la respuesta es texto plano, úsala directamente
+                data = { response: textData };
+            }
+            
             removeLoadingIndicator();
             
-            // Obtener respuesta del webhook
-            const botResponse = data.response || 'Lo siento, no pude procesar tu mensaje.';
+            // Obtener respuesta del webhook - intentar diferentes propiedades
+            const botResponse = data.response || data.message || data.text || data.reply || 
+                               (typeof data === 'string' ? data : 'Lo siento, no pude procesar tu mensaje.');
+            
             addMessage(botResponse, false);
         } catch (error) {
             removeLoadingIndicator();
             addMessage('Lo siento, hubo un error al procesar tu mensaje. Por favor, intenta nuevamente.', false);
-            console.error('Error:', error);
+            console.error('Error completo:', error);
         }
     }
 
