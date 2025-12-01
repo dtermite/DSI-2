@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const chatbotInput = document.getElementById('chatbot-input');
     const chatbotMessages = document.getElementById('chatbot-messages');
 
-    const WEBHOOK_URL = 'https://automatizacion.dsinformatica.com.ar/webhook-test/dsibot';
+    const WEBHOOK_URL = 'https://automatizacion.dsinformatica.com.ar/webhook/dsibot';
 
     function addMessage(message, isUser = false) {
         const messageDiv = document.createElement('div');
