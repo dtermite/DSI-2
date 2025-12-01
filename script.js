@@ -114,6 +114,9 @@ document.addEventListener("DOMContentLoaded", function() {
     async function sendMessageToWebhook(message) {
         try {
             addLoadingIndicator();
+            console.log('Enviando mensaje al webhook:', WEBHOOK_URL);
+            console.log('Mensaje:', message);
+            
             const response = await fetch(WEBHOOK_URL, {
                 method: 'POST',
                 headers: {
@@ -123,6 +126,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
 
             console.log('Response status:', response.status);
+            console.log('Response headers:', [...response.headers.entries()]);
             
             if (!response.ok) {
                 const errorText = await response.text();
@@ -154,6 +158,11 @@ document.addEventListener("DOMContentLoaded", function() {
             removeLoadingIndicator();
             addMessage('Lo siento, hubo un error al procesar tu mensaje. Por favor, intenta nuevamente.', false);
             console.error('Error completo:', error);
+            console.error('Error name:', error.name);
+            console.error('Error message:', error.message);
+            if (error instanceof TypeError) {
+                console.error('Posible error de CORS o red');
+            }
         }
     }
 
