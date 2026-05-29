@@ -109,18 +109,22 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto align-items-center">
           <li class="nav-item"><a class="nav-link" href="../#servicios">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link" href="../#proceso">Cómo trabajamos</a></li>
           <li class="nav-item"><a class="nav-link" href="../#proyectos">Proyectos</a></li>
           <li class="nav-item"><a class="nav-link active" aria-current="page" href="./">Recursos</a></li>
-          <li class="nav-item"><a class="nav-link" href="../#testimonios">Testimonios</a></li>
-          
+          <li class="nav-item ms-2">
+            <a href="#" class="btn btn-nav-cta btn-sm open-chatbot" aria-label="Abrir chat de consulta">
+              <i class="bi bi-chat-dots-fill me-1"></i>Contactar
+            </a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <main id="main-content" role="main" class="mt-5 pt-4">
+  <main id="main-content" role="main" class="article-main">
     <section class="py-4">
       <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-2">
@@ -398,13 +402,54 @@ import pandas as pd
     </section>
   </main>
 
-  <footer class="bg-dark text-white text-center p-3">
+  <footer class="footer-full text-white">
     <div class="container">
-      <p class="mb-0">&copy; 2025 DSI - Del Sur Informática. Todos los derechos reservados.</p>
+      <div class="row py-5">
+        <div class="col-md-4 mb-4">
+          <picture>
+            <source srcset="../images/nuevo-logo-dsi-2025.webp" type="image/webp">
+            <img src="../images/nuevo-logo-dsi-2025.png" alt="DSI Del Sur Informática" height="55" loading="lazy">
+          </picture>
+          <p class="text-muted mt-3 footer-desc">Consultoría en datos, IA y automatización para PYMEs. Bariloche, Patagonia Argentina.</p>
+          <div class="footer-socials mt-3">
+            <a href="#" aria-label="LinkedIn DSI" class="social-btn open-chatbot"><i class="bi bi-linkedin"></i></a>
+            <a href="#" aria-label="Instagram DSI" class="social-btn open-chatbot"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Chat DSI" class="social-btn open-chatbot"><i class="bi bi-chat-dots-fill"></i></a>
+          </div>
+        </div>
+        <div class="col-md-2 mb-4">
+          <h6 class="footer-heading">Servicios</h6>
+          <ul class="footer-links">
+            <li><a href="../#servicios">Análisis de Datos</a></li>
+            <li><a href="../#servicios">Excel Avanzado</a></li>
+            <li><a href="../#servicios">Power BI</a></li>
+            <li><a href="../#servicios">IA y WorkFlow</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2 mb-4">
+          <h6 class="footer-heading">Empresa</h6>
+          <ul class="footer-links">
+            <li><a href="../#proceso">Cómo trabajamos</a></li>
+            <li><a href="../#proyectos">Proyectos</a></li>
+            <li><a href="../#testimonios">Testimonios</a></li>
+            <li><a href="./">Recursos</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h6 class="footer-heading">Contacto</h6>
+          <p class="text-muted"><i class="bi bi-geo-alt-fill me-2"></i>San Carlos de Bariloche, Río Negro</p>
+          <a href="#" class="btn btn-primary btn-sm mt-2 open-chatbot">
+            <i class="bi bi-chat-dots-fill me-1"></i>Consulta gratuita
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom py-3">
+        <p class="mb-0 text-center text-muted">&copy; 2026 DSI - Del Sur Informática. Todos los derechos reservados.</p>
+      </div>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
-  <script src="../script.min.js" defer></script>
+  <script src="../script.js" defer></script>
 </body>
 </html>
