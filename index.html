@@ -57,7 +57,7 @@
                     "reviewBody": "El análisis de datos de DSI nos permitió identificar nuevas oportunidades de negocio. ¡El retorno de la inversión fue inmediato!",
                     "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
                 },
-                "image": "https://www.dsinformatica.com.ar/images/nuevo-logo-dsi-2025.png",
+                {
                     "@type": "Review",
                     "author": "María Gómez",
                     "reviewBody": "La automatización en Excel que crearon para nosotros nos ahorra horas de trabajo cada semana. Totalmente recomendado.",
@@ -77,7 +77,7 @@
     <link rel="preload" href="images/nuevo-logo-dsi-2025.png" as="image" imagesrcset="images/nuevo-logo-dsi-2025.png" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>/* Critical CSS */body{font-family:Montserrat,sans-serif;margin:0} .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden} .skip-link:focus{position:static;width:auto;height:auto;padding:.5rem 1rem;background:#0d6efd;color:#fff;z-index:1000} .navbar{min-height:56px} .hero-section{display:flex;align-items:center;justify-content:center;text-align:center;min-height:60vh}</style>
         <script type="application/ld+json">
         {
@@ -180,14 +180,22 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" role="navigation" aria-label="Navegación principal">
         <div class="container">
-            <a class="navbar-brand" href="#" aria-label="Inicio DSI - Del Sur Informática">DSI - Del Sur Informática</a>
+            <a class="navbar-brand" href="#" aria-label="Inicio DSI - Del Sur Informática">
+                <picture>
+                    <source srcset="images/nuevo-logo-dsi-2025.webp" type="image/webp">
+                    <img src="images/nuevo-logo-dsi-2025.png" alt="DSI - Del Sur Informática" height="44" loading="eager">
+                </picture>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú de navegación">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
                         <a class="nav-link" href="#servicios">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#proceso">Cómo trabajamos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#proyectos">Proyectos</a>
@@ -195,10 +203,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="recursos/">Recursos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#testimonios">Testimonios</a>
+                    <li class="nav-item ms-2">
+                        <a href="#" class="btn btn-nav-cta btn-sm open-chatbot" aria-label="Abrir chat de consulta">
+                            <i class="bi bi-chat-dots-fill me-1"></i>Contactar
+                        </a>
                     </li>
-                    
                 </ul>
             </div>
         </div>
@@ -207,11 +216,58 @@
     <main role="main" id="main-content">
         <header class="hero-section text-white text-center d-flex align-items-center justify-content-center">
             <div class="container animated-element fade-in-up">
-                <h1 class="display-3">Soluciones en Datos, IA y WorkFlow para el Crecimiento de tu PYME</h1>
-                <p class="lead">Convierte tus datos en información valiosa, <a href="#servicios" class="text-decoration-underline" title="Ver servicios de analítica, Excel, Power BI e IA">automatiza procesos con Inteligencia Artificial</a> y lleva la eficiencia de tu negocio al siguiente nivel explorando nuestros <a href="#proyectos" class="text-decoration-underline" title="Ver proyectos destacados con Power BI, Excel e IA">proyectos implementados</a>.</p>
-                <a href="https://wa.me/542944201878" target="_blank" rel="noopener" class="btn btn-primary btn-lg mt-3" aria-label="Abrir WhatsApp para contacto">¡Impulsa tu Negocio!</a>
+                <span class="hero-badge mb-3 d-inline-block">📍 Bariloche, Patagonia Argentina</span>
+                <h1 class="display-3 mt-2">Transformamos tus datos en <span class="typed-text" id="typed-text"></span><span class="typed-cursor">|</span></h1>
+                <p class="lead mt-3">Consultoría en <a href="#servicios" class="text-decoration-underline text-info" title="Ver servicios de analítica, Excel, Power BI e IA">análisis de datos, Power BI y automatización con IA</a> para PYMEs que quieren crecer con información real. Mirá nuestros <a href="#proyectos" class="text-decoration-underline text-info" title="Ver proyectos destacados con Power BI, Excel e IA">proyectos implementados</a>.</p>
+                <div class="hero-ctas d-flex justify-content-center gap-3 flex-wrap mt-4">
+                    <a href="#" class="btn btn-primary btn-lg open-chatbot" aria-label="Abrir chat con un experto">
+                        <i class="bi bi-chat-dots-fill me-2"></i>Hablar con un experto
+                    </a>
+                    <a href="#servicios" class="btn btn-outline-hero btn-lg">Ver servicios</a>
+                </div>
+                <div class="hero-stats row justify-content-center g-3 mt-4">
+                    <div class="col-6 col-md-3">
+                        <div class="stat-item">
+                            <div><span class="stat-number" data-target="50">0</span><span class="stat-suffix">+</span></div>
+                            <span class="stat-label">Clientes activos</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="stat-item">
+                            <div><span class="stat-number" data-target="5">0</span><span class="stat-suffix"> años</span></div>
+                            <span class="stat-label">De experiencia</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="stat-item">
+                            <div><span class="stat-number" data-target="100">0</span><span class="stat-suffix">+</span></div>
+                            <span class="stat-label">Proyectos entregados</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="stat-item">
+                            <div><span class="stat-number" data-target="30">0</span><span class="stat-suffix">%</span></div>
+                            <span class="stat-label">Mejora en eficiencia</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
+
+        <!-- Stack tecnológico -->
+        <section id="stack" class="stack-section py-4">
+            <div class="container text-center">
+                <p class="stack-label mb-4">Trabajamos con las herramientas líderes del mercado</p>
+                <div class="stack-grid">
+                    <div class="stack-item"><i class="bi bi-bar-chart-fill"></i><span>Power BI</span></div>
+                    <div class="stack-item"><i class="bi bi-file-earmark-spreadsheet-fill"></i><span>Excel Avanzado</span></div>
+                    <div class="stack-item"><i class="bi bi-diagram-3-fill"></i><span>n8n WorkFlow</span></div>
+                    <div class="stack-item"><i class="bi bi-cpu-fill"></i><span>IA / ChatGPT</span></div>
+                    <div class="stack-item"><i class="bi bi-filetype-py"></i><span>Python</span></div>
+                    <div class="stack-item"><i class="bi bi-cloud-fill"></i><span>Cloud / VPS</span></div>
+                </div>
+            </div>
+        </section>
 
         <section id="servicios" class="py-5 animated-element fade-in-up">
             <div class="container">
@@ -257,12 +313,47 @@
             </div>
         </section>
 
+        <!-- Cómo trabajamos -->
+        <section id="proceso" class="py-5 animated-element fade-in-up proceso-section">
+            <div class="container">
+                <h2 class="text-center mb-2">Cómo trabajamos</h2>
+                <p class="text-center text-muted mb-5">Un proceso simple y efectivo para transformar tu negocio con datos</p>
+                <div class="row text-center g-4">
+                    <div class="col-md-4">
+                        <div class="process-step">
+                            <div class="process-number">01</div>
+                            <div class="process-icon"><i class="bi bi-search"></i></div>
+                            <h3 class="h5 mt-3">Diagnóstico</h3>
+                            <p class="text-muted">Analizamos tus procesos actuales e identificamos las oportunidades de mejora con mayor impacto en tu negocio.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="process-step process-step--active">
+                            <div class="process-number">02</div>
+                            <div class="process-icon"><i class="bi bi-tools"></i></div>
+                            <h3 class="h5 mt-3">Implementación</h3>
+                            <p class="text-muted">Desarrollamos la solución a medida: dashboard en Power BI, automatización con n8n o modelo de IA integrado.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="process-step">
+                            <div class="process-number">03</div>
+                            <div class="process-icon"><i class="bi bi-rocket-takeoff-fill"></i></div>
+                            <h3 class="h5 mt-3">Resultados</h3>
+                            <p class="text-muted">Medimos el impacto real, capacitamos a tu equipo y acompañamos el crecimiento sostenido de tu empresa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="proyectos" class="py-5 animated-element fade-in-up">
             <div class="container">
                 <h2 class="text-center mb-5">Proyectos Destacados</h2>
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
                     <div class="col">
                         <div class="card project-card h-100 d-flex flex-column">
+                            <span class="project-badge">Power BI</span>
                             <picture>
                                 <source srcset="images/reporte-ventas.webp" type="image/webp">
                                 <source srcset="images/reporte-ventas.png" type="image/png">
@@ -276,6 +367,7 @@
                     </div>
                     <div class="col">
                         <div class="card project-card h-100 d-flex flex-column">
+                            <span class="project-badge">Excel</span>
                             <picture>
                                 <source srcset="images/automatizacion-excel.webp" type="image/webp">
                                 <source srcset="images/automatizacion-excel.png" type="image/png">
@@ -289,6 +381,7 @@
                     </div>
                     <div class="col">
                         <div class="card project-card h-100 d-flex flex-column">
+                            <span class="project-badge">Power BI</span>
                             <picture>
                                 <source srcset="images/reporte-financiero.webp" type="image/webp">
                                 <source srcset="images/reporte-financiero.png" type="image/png">
@@ -302,6 +395,7 @@
                     </div>
                     <div class="col">
                         <div class="card project-card h-100 d-flex flex-column">
+                            <span class="project-badge">IA + n8n</span>
                             <picture>
                                 <source srcset="images/workflow.webp" type="image/webp">
                                 <img src="images/workflow.png" class="card-img-top project-img-hover" alt="Automatización Inteligente con IA y WorkFlow" loading="lazy" decoding="async" width="800" height="600">
@@ -322,41 +416,41 @@
                 <div class="row">
                     <div class="col-md-4 mb-4 d-flex align-items-stretch">
                         <div class="testimonial-card p-4 d-flex flex-column h-100">
-                            <div class="testimonial-stars mb-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffc107" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.32-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.63.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffc107" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.32-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.63.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffc107" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.32-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.63.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffc107" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.32-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.63.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffc107" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.32-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.63.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="testimonial-avatar">JP</div>
+                                <div class="text-start">
+                                    <strong class="d-block testimonial-name">Juan Pérez</strong>
+                                    <small class="text-muted">Gerente de Operaciones</small>
+                                </div>
+                                <div class="testimonial-stars ms-auto">⭐⭐⭐⭐⭐</div>
                             </div>
                             <p class="fst-italic flex-grow-1">"El análisis de datos de DSI nos permitió identificar nuevas oportunidades de negocio. ¡El retorno de la inversión fue inmediato!"</p>
-                            <cite class="d-block mt-3">- Juan Pérez, Gerente de Operaciones</cite>
                         </div>
                     </div>
                     <div class="col-md-4 mb-4 d-flex align-items-stretch">
                         <div class="testimonial-card p-4 d-flex flex-column h-100">
-                            <div class="testimonial-stars mb-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffc107" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.32-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.63.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffc107" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.32-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.63.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffc107" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.32-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.63.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffc107" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.32-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.63.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffc107" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.32-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.63.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="testimonial-avatar">MG</div>
+                                <div class="text-start">
+                                    <strong class="d-block testimonial-name">María Gómez</strong>
+                                    <small class="text-muted">Dueña de E-commerce</small>
+                                </div>
+                                <div class="testimonial-stars ms-auto">⭐⭐⭐⭐⭐</div>
                             </div>
                             <p class="fst-italic flex-grow-1">"La automatización en Excel que crearon para nosotros nos ahorra horas de trabajo cada semana. Totalmente recomendado."</p>
-                            <cite class="d-block mt-3">- María Gómez, Dueña de E-commerce</cite>
                         </div>
                     </div>
                     <div class="col-md-4 mb-4 d-flex align-items-stretch">
                         <div class="testimonial-card p-4 d-flex flex-column h-100">
-                            <div class="testimonial-stars mb-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffc107" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.32-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.63.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffc107" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.32-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.63.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffc107" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.32-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.63.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffc107" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.32-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.63.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffc107" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.32-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.63.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="testimonial-avatar">SM</div>
+                                <div class="text-start">
+                                    <strong class="d-block testimonial-name">Sofía Martínez</strong>
+                                    <small class="text-muted">Directora de Innovación</small>
+                                </div>
+                                <div class="testimonial-stars ms-auto">⭐⭐⭐⭐⭐</div>
                             </div>
-                            <p class="fst-italic flex-grow-1">"Gracias a la solución de IA y WorkFlow de DSI, logramos automatizar procesos críticos y reducir errores. ¡La eficiencia de nuestro equipo mejoró notablemente!"</p>
-                            <cite class="d-block mt-3">- Sofía Martínez, Directora de Innovación</cite>
+                            <p class="fst-italic flex-grow-1">"Gracias a la solución de IA y WorkFlow de DSI, logramos automatizar procesos críticos y reducir errores. ¡La eficiencia del equipo mejoró notablemente!"</p>
                         </div>
                     </div>
                 </div>
@@ -457,9 +551,50 @@
         </section>
     </main>
 
-    <footer class="text-white text-center p-3">
+    <footer class="footer-full text-white">
         <div class="container">
-            <p class="mb-0">&copy; 2025 DSI - Del Sur Informática. Todos los derechos reservados.</p>
+            <div class="row py-5">
+                <div class="col-md-4 mb-4">
+                    <picture>
+                        <source srcset="images/nuevo-logo-dsi-2025.webp" type="image/webp">
+                        <img src="images/nuevo-logo-dsi-2025.png" alt="DSI Del Sur Informática" height="55" loading="lazy">
+                    </picture>
+                    <p class="text-muted mt-3 footer-desc">Consultoría en datos, IA y automatización para PYMEs. Bariloche, Patagonia Argentina.</p>
+                    <div class="footer-socials mt-3">
+                        <a href="#" aria-label="LinkedIn DSI" class="social-btn"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" aria-label="Instagram DSI" class="social-btn"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="Chat DSI" class="social-btn open-chatbot"><i class="bi bi-chat-dots-fill"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h6 class="footer-heading">Servicios</h6>
+                    <ul class="footer-links">
+                        <li><a href="#servicios">Análisis de Datos</a></li>
+                        <li><a href="#servicios">Excel Avanzado</a></li>
+                        <li><a href="#servicios">Power BI</a></li>
+                        <li><a href="#servicios">IA y WorkFlow</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h6 class="footer-heading">Empresa</h6>
+                    <ul class="footer-links">
+                        <li><a href="#proceso">Cómo trabajamos</a></li>
+                        <li><a href="#proyectos">Proyectos</a></li>
+                        <li><a href="#testimonios">Testimonios</a></li>
+                        <li><a href="recursos/">Recursos</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="footer-heading">Contacto</h6>
+                    <p class="text-muted"><i class="bi bi-geo-alt-fill me-2"></i>San Carlos de Bariloche, Río Negro</p>
+                    <a href="#" class="btn btn-primary btn-sm mt-2 open-chatbot">
+                        <i class="bi bi-chat-dots-fill me-1"></i>Consulta gratuita
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom py-3">
+                <p class="mb-0 text-center text-muted">&copy; 2026 DSI - Del Sur Informática. Todos los derechos reservados.</p>
+            </div>
         </div>
     </footer>
 

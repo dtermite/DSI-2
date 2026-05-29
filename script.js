@@ -218,4 +218,79 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+
+    // Botones que abren el chatbot en lugar de WhatsApp
+    document.querySelectorAll('.open-chatbot').forEach(el => {
+        el.addEventListener('click', (e) => {
+            e.preventDefault();
+            const win = document.getElementById('chatbot-window');
+            if (win && win.classList.contains('chatbot-hidden')) {
+                document.getElementById('chatbot-toggle').click();
+            }
+            win.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        });
+    });
+
+    // Typing effect for hero
+    const typedTextEl = document.getElementById('typed-text');
+    if (typedTextEl) {
+        const words = ['Resultados', 'Decisiones', 'Crecimiento', 'Eficiencia'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                typedTextEl.textContent = currentWord.slice(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedTextEl.textContent = currentWord.slice(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                setTimeout(() => { isDeleting = true; typeEffect(); }, 2000);
+                return;
+            }
+            if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+            }
+
+            setTimeout(typeEffect, isDeleting ? 70 : 110);
+        }
+        setTimeout(typeEffect, 800);
+    }
+
+    // Counter animation for hero stats
+    const counters = document.querySelectorAll('.stat-number');
+    if (counters.length > 0) {
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const target = parseInt(el.getAttribute('data-target'), 10);
+                const duration = 1400;
+                const stepTime = 16;
+                const steps = duration / stepTime;
+                const increment = target / steps;
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        el.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        el.textContent = Math.floor(current);
+                    }
+                }, stepTime);
+
+                counterObserver.unobserve(el);
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+    }
 });
