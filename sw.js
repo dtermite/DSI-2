@@ -1,15 +1,16 @@
-const CACHE_NAME = "dsi-cache-v8";
+const CACHE_NAME = "dsi-cache-v9";
 const ASSETS = [
   "/",
   "/index.html",
-  "/style.min.css",
-  "/script.min.js",
+  "/style.css",
+  "/script.js",
   "/manifest.json",
   "/images/reporte-ventas.webp",
   "/images/automatizacion-excel.webp",
   "/images/reporte-financiero.webp",
   "/images/workflow.webp",
-  "/images/nuevo-logo-dsi-2025.png",
+  "/images/dsi-logo.png",
+  "/images/dsi-logo.webp",
   "/images/favicon.ico",
   "/images/og/home-og.svg",
   "/images/og/recursos-og.svg",
