@@ -278,7 +278,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Typing effect for hero
     const typedTextEl = document.getElementById('typed-text');
     if (typedTextEl) {
-        const words = ['Resultados', 'Decisiones', 'Crecimiento', 'Eficiencia'];
+        const words = ['ahorrar tiempo', 'evitar errores', 'decidir mejor', 'crecer sin complicarte'];
         let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;

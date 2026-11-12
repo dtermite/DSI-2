@@ -861,6 +861,20 @@ footer {
     border-bottom-left-radius: 4px;
 }
 
+.about-card {
+    max-width: 780px;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 2rem;
+    line-height: 1.75;
+    color: var(--text-main);
+}
+
+.project-card .card-img-top {
+    background: #050a14;
+}
+
 .chat-quick-replies {
     display: flex;
     flex-direction: column;
