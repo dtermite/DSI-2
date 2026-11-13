@@ -873,6 +873,9 @@ footer {
 
 .project-card .card-img-top {
     background: #050a14;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
 }
 
 .chat-quick-replies {
