@@ -5,15 +5,15 @@
 <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#00c8ff"/></marker>
 </defs>
 <rect width="800" height="600" fill="url(#bg)"/>
-<rect x="120" y="30" width="560" height="100" rx="18" fill="rgba(255,255,255,0.05)" stroke="#1f4f8f" stroke-width="2"/>
-<text x="400" y="93" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="600" fill="#ffffff">Operación diaria</text>
-<line x1="400" y1="136" x2="400" y2="169" stroke="#00c8ff" stroke-width="4" marker-end="url(#ar)"/>
-<rect x="120" y="175" width="560" height="100" rx="18" fill="url(#hi)" stroke="none" stroke-width="2"/>
-<text x="400" y="238" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="600" fill="#ffffff">Sistema de gestión propio</text>
-<line x1="400" y1="281" x2="400" y2="314" stroke="#00c8ff" stroke-width="4" marker-end="url(#ar)"/>
-<rect x="120" y="320" width="560" height="100" rx="18" fill="rgba(255,255,255,0.05)" stroke="#1f4f8f" stroke-width="2"/>
-<text x="400" y="383" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="600" fill="#ffffff">Base de datos</text>
-<line x1="400" y1="426" x2="400" y2="459" stroke="#00c8ff" stroke-width="4" marker-end="url(#ar)"/>
-<rect x="120" y="465" width="560" height="100" rx="18" fill="rgba(255,255,255,0.05)" stroke="#1f4f8f" stroke-width="2"/>
-<text x="400" y="528" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="600" fill="#ffffff">Reportes y control</text>
+<rect x="120" y="100" width="560" height="90" rx="18" fill="rgba(255,255,255,0.05)" stroke="#1f4f8f" stroke-width="2"/>
+<text x="400" y="158" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="600" fill="#ffffff">Operación diaria</text>
+<line x1="400" y1="196" x2="400" y2="221" stroke="#00c8ff" stroke-width="4" marker-end="url(#ar)"/>
+<rect x="120" y="227" width="560" height="90" rx="18" fill="url(#hi)" stroke="none" stroke-width="2"/>
+<text x="400" y="285" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="600" fill="#ffffff">Sistema de gestión propio</text>
+<line x1="400" y1="323" x2="400" y2="348" stroke="#00c8ff" stroke-width="4" marker-end="url(#ar)"/>
+<rect x="120" y="354" width="560" height="90" rx="18" fill="rgba(255,255,255,0.05)" stroke="#1f4f8f" stroke-width="2"/>
+<text x="400" y="412" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="600" fill="#ffffff">Base de datos</text>
+<line x1="400" y1="450" x2="400" y2="475" stroke="#00c8ff" stroke-width="4" marker-end="url(#ar)"/>
+<rect x="120" y="481" width="560" height="90" rx="18" fill="rgba(255,255,255,0.05)" stroke="#1f4f8f" stroke-width="2"/>
+<text x="400" y="539" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="600" fill="#ffffff">Reportes y control</text>
 </svg>
