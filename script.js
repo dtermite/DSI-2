@@ -78,6 +78,49 @@ document.addEventListener("DOMContentLoaded", function() {
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
 
+    // Identificador de conversación (por visita) para que el bot pueda mantener el hilo
+    function getSessionId() {
+        try {
+            let id = sessionStorage.getItem('dsi-chat-session');
+            if (!id) {
+                id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2);
+                sessionStorage.setItem('dsi-chat-session', id);
+            }
+            return id;
+        } catch (_) {
+            return 'anon-' + Date.now();
+        }
+    }
+
+    // Botones de respuesta rápida para arrancar la conversación
+    const QUICK_REPLIES = [
+        'Quiero automatizar una tarea repetitiva',
+        'Quiero un asistente de IA para mi empresa',
+        'Necesito un dashboard o reportes',
+        'Tengo una idea y no sé por dónde empezar'
+    ];
+
+    function addQuickReplies() {
+        const wrap = document.createElement('div');
+        wrap.className = 'chat-quick-replies';
+        QUICK_REPLIES.forEach(text => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'chat-chip';
+            btn.textContent = text;
+            btn.addEventListener('click', () => {
+                wrap.remove();
+                addMessage(text, true);
+                sendMessageToWebhook(text);
+            });
+            wrap.appendChild(btn);
+        });
+        chatbotMessages.appendChild(wrap);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    const FALLBACK_MESSAGE = 'Ahora mismo no puedo responderte, estamos con una demora. Probá de nuevo en unos minutos o escribinos por LinkedIn: https://www.linkedin.com/in/diego-termite-dsi';
+
     function addLoadingIndicator() {
         // Agregar keyframes si no existen
         if (!document.getElementById('typing-animation-style')) {
@@ -131,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ message: message }),
+                body: JSON.stringify({ message: message, sessionId: getSessionId() }),
                 signal: controller.signal
             });
 
@@ -170,9 +213,9 @@ document.addEventListener("DOMContentLoaded", function() {
             
             if (error.name === 'AbortError') {
                 console.error('La petición tardó demasiado y fue cancelada');
-                addMessage('La petición tardó demasiado. Por favor, intenta nuevamente.', false);
+                addMessage('La respuesta está tardando más de lo normal. Probá de nuevo en un momento.', false);
             } else {
-                addMessage('Lo siento, hubo un error al procesar tu mensaje. Por favor, intenta nuevamente.', false);
+                addMessage(FALLBACK_MESSAGE, false);
                 console.error('Error completo:', error);
                 console.error('Error name:', error.name);
                 console.error('Error message:', error.message);
@@ -196,7 +239,8 @@ document.addEventListener("DOMContentLoaded", function() {
         chatbotToggle.addEventListener('click', () => {
             chatbotWindow.classList.toggle('chatbot-hidden');
             if (!chatbotWindow.classList.contains('chatbot-hidden') && chatbotMessages.children.length === 0) {
-                addMessage('¡Hola! Soy el asistente virtual de DSI. ¿En qué puedo ayudarte hoy?', false);
+                addMessage('¡Hola! Soy el asistente de DSI, y funciono con IA. Contame qué proceso, tarea o problema de tu empresa te gustaría resolver y te voy guiando. ¿Por dónde empezamos?', false);
+                addQuickReplies();
             }
         });
     }
@@ -234,7 +278,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Typing effect for hero
     const typedTextEl = document.getElementById('typed-text');
     if (typedTextEl) {
-        const words = ['Resultados', 'Decisiones', 'Crecimiento', 'Eficiencia'];
+        const words = ['ahorrar tiempo', 'evitar errores', 'decidir mejor', 'crecer sin complicarte'];
         let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
